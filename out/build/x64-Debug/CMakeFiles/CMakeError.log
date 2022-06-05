@@ -1,0 +1,50 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: C:/Users/pgian/Dropbox/final_HMMY/diploma/trafficFluid/code/pantelis_monte_carlo_controller/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_df2a1 && [1/2] Building C object CMakeFiles\cmTC_df2a1.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_df2a1.exe
+FAILED: cmTC_df2a1.exe 
+cmd.exe /C "cd . && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_df2a1.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\10.0.18362.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\10.0.18362.0\x64\mt.exe --manifests  -- C:\PROGRA~2\MICROS~2\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_df2a1.dir\CMakeCCompilerABI.c.obj  /out:cmTC_df2a1.exe /implib:cmTC_df2a1.lib /pdb:cmTC_df2a1.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+FINAL LINK: command "C:\PROGRA~2\MICROS~2\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_df2a1.dir\CMakeCCompilerABI.c.obj /out:cmTC_df2a1.exe /implib:cmTC_df2a1.lib /pdb:cmTC_df2a1.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_df2a1.dir/intermediate.manifest CMakeFiles\cmTC_df2a1.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: cannot open file 'cmTC_df2a1.exe'
+ninja: build stopped: subcommand failed.
+
+
+
+
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR failed with the following output:
+Change Dir: C:/Users/pgian/Dropbox/final_HMMY/diploma/trafficFluid/code/pantelis_monte_carlo_controller/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_83cb1 && [1/2] Building CXX object CMakeFiles\cmTC_83cb1.dir\src.cxx.obj
+FAILED: CMakeFiles/cmTC_83cb1.dir/src.cxx.obj 
+C:\PROGRA~2\MICROS~2\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe  /nologo /TP -DCOMPILER_HAS_DEPRECATED_ATTR  /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\cmTC_83cb1.dir\src.cxx.obj /FdCMakeFiles\cmTC_83cb1.dir\ /FS -c src.cxx
+src.cxx(1): error C2065: '__deprecated__': undeclared identifier
+src.cxx(1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+src.cxx(1): error C2062: type 'int' unexpected
+src.cxx(1): error C2143: syntax error: missing ';' before '{'
+src.cxx(1): error C2447: '{': missing function header (old-style formal list?)
+src.cxx(2): error C3861: 'somefunc': identifier not found
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR failed with the following output:
+Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c2d45 && [1/2] Building CXX object CMakeFiles\cmTC_c2d45.dir\src.cxx.obj
+FAILED: CMakeFiles/cmTC_c2d45.dir/src.cxx.obj 
+C:\PROGRA~2\MICROS~2\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe  /nologo /TP -DCOMPILER_HAS_DEPRECATED_ATTR  /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\cmTC_c2d45.dir\src.cxx.obj /FdCMakeFiles\cmTC_c2d45.dir\ /FS -c src.cxx
+src.cxx(1): error C2065: '__deprecated__': undeclared identifier
+src.cxx(1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+src.cxx(1): error C2062: type 'int' unexpected
+src.cxx(1): error C2143: syntax error: missing ';' before '{'
+src.cxx(1): error C2447: '{': missing function header (old-style formal list?)
+src.cxx(2): error C3861: 'somefunc': identifier not found
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}

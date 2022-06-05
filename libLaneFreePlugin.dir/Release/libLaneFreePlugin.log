@@ -1,0 +1,8 @@
+﻿  LaneFree.cpp
+C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\\src\LaneFree.cpp(36,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\\src\LaneFree.cpp(37,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\\src\LaneFree.cpp(129,9): warning C4101: 'vx': unreferenced local variable
+C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\\src\LaneFree.cpp(129,13): warning C4101: 'accel': unreferenced local variable
+C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\\src\LaneFree.cpp(176,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     Creating library C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\/Release/libLaneFreePlugin.lib and object C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\/Release/libLaneFreePlugin.exp
+  libLaneFreePlugin.vcxproj -> C:\Users\dtrou\Desktop\sumo_stuff\lane_free_control_library_vs_2019\Release\libLaneFreePlugin.dll

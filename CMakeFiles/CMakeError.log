@@ -1,0 +1,18 @@
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR failed with the following output:
+Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_cc6c4.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+  src.cxx
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED_ATTR /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_cc6c4.dir\Debug\\" /Fd"cmTC_cc6c4.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx
+C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx(1,16): error C2065: '__deprecated__': undeclared identifier [C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\cmTC_cc6c4.vcxproj]
+C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx(1,31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\cmTC_cc6c4.vcxproj]
+C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx(1,37): error C2448: '__attribute__': function-style initializer appears to be a function definition [C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\cmTC_cc6c4.vcxproj]
+
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}
