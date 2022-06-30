@@ -26,7 +26,7 @@ float imediateReward(Car c, Car c_star, std::vector<Car> adjacencyList) {
 
 	float score = oldDistanceFromDesiredSpeed - newDistanceFromDesiredSpeed;
 
-	float res = (1000 / newDistanceFromDesiredSpeed);// +score;//elegxos gia 0
+	float res = (10 / newDistanceFromDesiredSpeed);// +score;//elegxos gia 0
 	//std::cout << "Res=" << res << std::endl;
 	// Check if a collision in eminent
 	float collision = 0;
@@ -39,6 +39,7 @@ float imediateReward(Car c, Car c_star, std::vector<Car> adjacencyList) {
 	for (Car c2 : adjacencyList) {
 		collision = collision + betweenCarsReward(c, c2);
 	}
+	collision = collision / adjacencyList.size();
 
 	//ALPHA favours reaching the desired speed and BETA favours avoiding collisions
 	return ALPHA * res - BETA * collision;

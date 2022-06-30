@@ -342,7 +342,7 @@ public:
     void update(float score)
     {
         this->scoreSum += score;
-        numVisits++;
+        this->numVisits++;
     }
 
     /**
@@ -469,46 +469,33 @@ public:
      */
     A calculateAction()
     {
+        
         search();
-        //std::cout << "-----------------------" << std::endl << "Current velocity:" << root->getData().getControlledCar().getVelocityX() << std::endl;
-        // Select the Action with the best score
+       
+        
         std::shared_ptr<Node<T, A, E>> best;
         float bestScore = -std::numeric_limits<float>::max();
         auto& children = root->getChildren();
 
         double desiredSpeed = root->getData().getControlledCar().getDesiredSpeed();
-        /*std::cout << "Car = " << root->getData().getControlledCar().getCarNumber() << std::endl;
-        std::cout << "Desired speed = " << desiredSpeed << std::endl;
-        std::cout << "Actual speed = " << root->getData().getControlledCar().getVelocityX() << std::endl;*/
+        
 
         for (unsigned int i = 0; i < children.size(); i++) {
-            /*carAction g = children[i]->getAction();
-            if (g.getLateralAccelerationValue() == NULL) {
-                std::cout << "Null action!" << std::endl;
-                std::cout << g.getLateralAccelerationValue() << std::endl;
-                if (g.getLongitudinalAccelerationValue() == NULL) {
-                    std::cout << "Hurray!" << std::endl;
-                }
-            }
-            else {
-                std::cout << g.getLongitudinalAccelerationValue() <<"," << g.getLateralAccelerationValue() << std::endl;
-            }*/
+            carAction g = children[i]->getAction();
+            
+        
             float score = children[i]->getAvgScore();
             double differenceFromDesiredSpeed = abs(desiredSpeed - children[i]->getData().getControlledCar().getVelocityX());
 
             score = score + (500 / differenceFromDesiredSpeed);
-                if (score > bestScore) {
-                    bestScore = score;
-                    best = children[i];
-                }
-                
+            if (score > bestScore) {
+                bestScore = score;
+                best = children[i];
+            }
+              
+
         }
         
-        /*if (root->getData().getControlledCar().getCarNumber() == 4) {
-            carAction next = best->getAction();
-            std::cout << next.getLongitudinalAccelerationValue() << "m/s^2  -----  " << next.getLateralAccelerationValue() << std::endl;
-            //std::cout << "Action is: Longitude =" << next.getLongitudinalAccelerationValue() << "m/s^2   ***   Latitude=" << next.getLateralAccelerationValue << std::endl;
-        }*/
         // If no expansion took place, simply execute a random action
         if (!best) {
             A action;
@@ -576,17 +563,19 @@ private:
     {
         std::chrono::system_clock::time_point old = std::chrono::system_clock::now();
         iterations = 0;
-        //std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime
+        
+        
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
             
             if (iterations > 500) {
                 break;
             }
-            //std::cout << "Iteration %d\n" << iterations;
+         
             /**
              * Selection
              */
+            
             std::shared_ptr<Node<T, A, E>> selected = root;
             while (!selected->shouldExpand())
                 selected = select(*selected);
@@ -594,36 +583,34 @@ private:
             //std::cout << "STEP 1:Node selected .. " << selected->getID();
 
             if (termination->isTerminal(selected->getData())) {
-               /* const auto sel = selected->getData();
-                std::cout << "Getting cars in the state " << sel.getNumberOfCarsInRoads();*/
-                //std::cout << "Selected terminal state " << selected->getData().getControlledCar().getCarNumber() << std::endl;
+               const auto sel = selected->getData();
 
-                if (selected->getData().isAccidentState()) {
+               if (selected->getData().isAccidentState()) {
                     backProp(*selected, scoring->score(selected->getData())-10);
-                }
-                else {
+               }
+               else {
                     backProp(*selected, scoring->score(selected->getData()));
-                }
-                continue;
+               }
+               continue;
             }
-
             
-            //const auto sel = selected->getData();
-            //std::cout << "Getting cars in the state " << sel.getNumberOfCarsInRoads() << "\n"; 
             
+            const auto sel = selected->getData();
+    
             /**
              * Expansion
              */
             std::shared_ptr<Node<T, A, E>> expanded;
             int numVisits = selected->getNumVisits();
+            
             if (numVisits >= minT) {
-                //std::cout << "Expand node for car: " << root->getData().getControlledCar().getCarNumber() << std::endl;
                 expanded = expandNext(selected);
             }
             else {
                 expanded = selected;
             }
           
+            
             /**
              * Simulation
              */
@@ -663,18 +650,11 @@ private:
     {
         T expandedData(node->getData());
         auto action = node->generateNextAction();
-
-        /*if (action.getLongitudinalAccelerationValue() == NULL) {
-            std::cout << "Pandy " << std::endl;
-        }
-        if (action.getLateralAccelerationValue() == NULL) {
-            std::cout << "Pandy v2 " << std::endl;
-        }*/
+        
         action.execute(expandedData);
         auto newNode = std::make_shared<Node<T, A, E>>(++currentNodeID, expandedData, node, action);
         node->addChild(newNode);
-        //std::cout << "STEP 2: Expansion , node expanded " << std::endl;
-        //std::cout << "Position of car .. " << node->getData().getControlledCar().getPositionX() << std::endl;
+       
         return newNode;
     }
 
@@ -686,7 +666,7 @@ private:
         A action;
         // Check if the end of the game is reached and generate the next state if
         // not
-        int states = 0;
+        int states = 1;
 
         while (!termination->isTerminal(state)) {
             /* The simulation is for the first 30 steps ahead */
@@ -696,11 +676,10 @@ private:
             P playout(&state);
             playout.generateRandom(action);
 
-            //std::cout << "Action: Longitudinal " << action.getLongitudinalAccelerationValue() << " , Lateral " << action.getLateralAccelerationValue() << std::endl;
             action.execute(state);
             states++;
         }
-
+        
         //Remove from score,possible collisions
         float score;
         if (states == 30) {
@@ -716,17 +695,13 @@ private:
     /** Backpropagate a score through the tree */
     void backProp(Node<T, A, E>& node, float score)
     {
-        float new_score = backprop->updateScore(node.getData(), score);
-
-        // SCORE: Quality - probability_of_collision
-        node.update(new_score);
-
-        //std::cout << "Backpropagate score .. " << node.getAvgScore()<< " in " << node.getNumVisits()<< " number of visits " << std::endl;
-
+        
+        node.update(score);// backprop->updateScore(node.getData(), score));
+       
         std::shared_ptr<Node<T, A, E>> current = node.getParent();
+        
         while (current) {
             current->update(backprop->updateScore(current->getData(), score));
-            //std::cout << "Score of node ... " << current->getAvgScore() << std::endl;
             current = current->getParent();
         }
     }

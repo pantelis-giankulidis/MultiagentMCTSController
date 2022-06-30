@@ -9,8 +9,8 @@
 #define SIMULATION_CONSTANT_TIME 0.2
 #define SIMULATION_CONSTANT_TIME_SQUARED 0.04
 #define MAX_ACCELERATION 1
-#define LONGITUDINAL_ACTIONS 7
-#define LATERAL_ACTIONS 2
+#define LONGITUDINAL_ACTIONS 5
+#define LATERAL_ACTIONS 3
 #define MIN_DESIRED_SPEED 25
 #define MAX_DESIRED_SPEED 35
 #define ROAD_WIDTH 10.2
@@ -19,11 +19,11 @@
 
 /*Factored value MCTS hyperparameters*/
 #define MAX_FVMCTS_DEPTH 3
-#define FVMCTS_GAMMA 0.7
-#define SIMULATIONS_FROM_ROOT 10
+#define FVMCTS_GAMMA 0.95
+#define SIMULATIONS_FROM_ROOT 12
 #define DISTANCE_FOR_CREATING_EDGE 35
-#define EXPLORATION_TERM 4
-#define ALPHA 3
+#define EXPLORATION_TERM 0.5
+#define ALPHA 1
 #define BETA 0
 
 
@@ -34,7 +34,7 @@
 
 const std::vector<double> longitudinalAccelerationValues{ -2,-1,0,1,3 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
-const int availableActions = 5;
+const int availableActions = 15;
 
 class Car {
 private:
@@ -113,46 +113,7 @@ public:
 	}
 
 	int generateNext() {
-		//std::cout << "Velocity is " << velocity << std::endl;
-		if (velocity == 0) {
-
-			int pick = rand();
-
-
-			if ((pick % 100) < 10) {
-				return 1;
-			}
-			else {
-				if ((pick % 100) > 90) {
-					return 3;
-				}
-				else {
-					return 2;
-				}
-			}
-		}
-
-		if (velocity > 0) {
-
-			int pick = rand();
-			if ((pick % 100) < 10) {
-				return 2;
-			}
-			else {
-				return 1;
-			}
-		}
-
-		if (velocity < 0) {
-
-			int pick = rand();
-			if ((pick % 100) < 10) {
-				return 2;
-			}
-			else {
-				return 3;
-			}
-		}
+		return rand()%LATERAL_ACTIONS;
 	}
 };
 
@@ -166,71 +127,8 @@ public:
 		this->desiredSpeed = desiredSpeed;
 	}
 
-	int generateNext() {
-		//std::cout << "Velocity is ... " << velocity << " Des speed: " << desiredSpeed << std::endl;
-		int pick = rand();
-
-		if (velocity < 0.9 * desiredSpeed) {
-			if ((pick % 100) < 15) {
-				return 7;
-			}
-			else {
-				if ((pick % 100) < 55) {
-					return 6;
-				}
-				else {
-					if ((pick % 100) < 85) {
-						return 5;
-					}
-					else {
-						return 4;
-					}
-				}
-			}
-		}
-
-		if (velocity > 1.1 * desiredSpeed) {
-			if ((pick % 100) < 15) {
-				return 1;
-			}
-			else {
-				if ((pick % 100) < 55) {
-					return 2;
-				}
-				else {
-					if ((pick % 100) < 85) {
-						return 3;
-					}
-					else {
-						return 4;
-					}
-				}
-			}
-		}
-		else {
-			if ((pick % 100) < 15) {
-				return 2;
-			}
-			else {
-				if ((pick % 100) < 35) {
-					return 3;
-				}
-				else {
-					if ((pick % 100) < 65) {
-						return 4;
-					}
-					else {
-						if ((pick % 100) < 85) {
-							return 5;
-						}
-						else {
-							return 6;
-						}
-					}
-				}
-			}
-		}
-
+	int generateNext(){
+		return rand()%LONGITUDINAL_ACTIONS;
 	}
 };
 

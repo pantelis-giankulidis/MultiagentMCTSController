@@ -143,6 +143,10 @@ public:
 			calculateNodeQAndGetBestAction();
 
 		}
+		std::cout << "MAXPLUS ENDED WITH: " << std::endl;
+		for (int i = 0; i < maxPlusGraph.size(); i++) {
+			std::cout << " agent " << maxPlusGraph[i].getCar().getCarNumber() << ", action = " << maxPlusGraph[i].getTemporaryBestActionIndex() << ", q=" << maxPlusGraph[i].getTemporaryBestActionValue() << std::endl;
+		}
 	}
 
 
@@ -153,6 +157,7 @@ public:
 		for (int i = 0; i < maxPlusGraph.size(); i++) {
 			for (edge* e : maxPlusGraph[i].getAdjacencyList()) {
 				e->initialiseMij();
+				e->initialiseMji();
 			}
 		}
 	}
@@ -190,11 +195,11 @@ public:
 						//UPDATE
 						for (int actionj = 0; actionj < availableActions; actionj++) {
 							//std::cout << "AJ="<<actionj << std::endl;
-							float newMij = agent.getQ()[action] + e->getQij()[is_i ? action : actionj][is_i ? actionj : action] + sumOfMki(agent, e, action);
+							float newMij = agent.getQ()[action] + e->getQij()[is_i ? action : actionj][is_i ? actionj : action];// +sumOfMki(agent, e, action);
 							float qij = e->getQij()[is_i ? action : actionj][is_i ? actionj : action];
 							if (edgeExplorationFlag == 0) {
 
-								//std::cout << "ACTION "<<action<<" , aj="<<actionj<<", edge exploration components : Q(ai) = " << agent.getQ()[action] << ", Qij(aj)="<<qij<<", log(N + 1) = " << log(agent.getN() + 1) << ", Ni(ai) = " << e->getNij()[is_i ? action : e->getBestActionIndexI()][is_i ? e->getBestActionIndexJ() : action] << std::endl;
+								//std::cout << "ACTION "<<action<<" , aj="<<actionj<<", edge exploration components : Q(ai) = " << agent.getQ()[action] << ", Qij(aj)="<<qij<<",N="<<agent.getN()<<", log(N + 1) = " << log(agent.getN() + 1) << ", Ni(ai) = " << e->getNij()[is_i ? action : e->getBestActionIndexI()][is_i ? e->getBestActionIndexJ() : action] << std::endl;
 								newMij = newMij + C * sqrt(log(agent.getN() + 1) / (e->getNij()[is_i ? action : actionj][is_i ? actionj : action] + 1));
 							}
 
@@ -237,16 +242,27 @@ public:
 
 			for (int actionIndex = 0; actionIndex < availableActions; actionIndex++) {
 
-				float q = nod.getQ()[actionIndex] + sumOfMki(nod, NULL, actionIndex);
+				float q = nod.getQ()[actionIndex];// +sumOfMki(nod, NULL, actionIndex);
 
 				if (nodeExplorationFlag == 0) {
 					q = q + C * sqrt(log(vectorSum(nod.getNi()) + 1) / nod.getNi()[actionIndex]);
 				}
 
 				if (q > BestQ) {
+					//std::cout << "CHECK FOR BIGGER" << std::endl;
 					BestQ = q;
 					pickedActionIndex = actionIndex;
 				}
+				if (q == BestQ) {
+					//std::cout << "CHECK FOR TIES " << std::endl;
+					bool pickOnTies = rand() > (RAND_MAX/2);
+					if (pickOnTies) {
+						//std::cout << "HAD A TIE" << std::endl;
+						BestQ = q;
+						pickedActionIndex = actionIndex;
+					}
+				}
+				
 			}
 			nod.setTemporaryBestActionIndex(pickedActionIndex);
 			nod.setTemporaryBestActionValue(BestQ);

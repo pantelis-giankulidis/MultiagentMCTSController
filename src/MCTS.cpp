@@ -191,10 +191,12 @@ void laneFree_MonteCarloSimulation_strategy::generateRandom(carAction& action) {
 	double desiredSpeed = state->getControlledCar().getDesiredSpeed();
 	int x = longitudinalDistribution(state->getControlledCar().getVelocityX(), desiredSpeed).generateNext();
 	int y = lateralDistribution(state->getControlledCar().getVelocityY()).generateNext();
-
-	//std::cout << "acceleration to apply " << longitudinalAccelerationValues[x - 1] << " , " << lateralAccelerationValues[y - 1] << std::endl;
-	action.setLateralAccelerationValue(lateralAccelerationValues[y - 1]);
-	action.setLongitudinalAccelerationValue(longitudinalAccelerationValues[x - 1]);
+	//int x = 2;
+	//int y = 2;
+	//std::cout << "Acceel" << std::endl;
+	//std::cout << "acceleration to apply " << longitudinalAccelerationValues[x] << " , " << lateralAccelerationValues[y] << std::endl;
+	action.setLateralAccelerationValue(lateralAccelerationValues[y]);
+	action.setLongitudinalAccelerationValue(longitudinalAccelerationValues[x]);
 }
 
 
@@ -240,6 +242,9 @@ void laneFree_TreeExpansionStrategy::searchNextPossibleMove() {
 	if (longitudinalAccelerationIndex == LONGITUDINAL_ACTIONS) {
 		longitudinalAccelerationIndex = 0;
 		lateralAccelerationIndex++;
+	}
+	if (lateralAccelerationIndex == LATERAL_ACTIONS) {
+		lateralAccelerationIndex = 0;
 	}
 }
 
@@ -352,9 +357,11 @@ void factoredValueMCTS::updateGraphStats(laneFreeGlobalState s, MaxPlus step) {
 
 	for (int i = 0; i < maxPlusGraph.size(); i++) {
 		node nod = maxPlusGraph[i];
-
+		//std::cout << "nod.getN()=" << nod.getN() << std::endl;
+		//std::cout << "nod.getNi()[actionIndex] = " << nod.getNi()[actionIndex] << std::endl;
 		//Update node statistics
 		nod.setN(nod.getN() + 1);
+		
 		int actionIndex = nod.getTemporaryBestActionIndex();
 		nod.setNi(actionIndex, nod.getNi()[actionIndex] + 1); // Ni=Ni+1
 		nod.setQ(actionIndex, nod.getQ()[actionIndex] + (nod.getBestActionValue(actionIndex) - nod.getQ()[actionIndex]) / nod.getNi()[actionIndex]); // Q' = Q'+(qi-Q')/Ni
@@ -456,7 +463,7 @@ void factoredValueMCTS::computeFactoredImediateReward(laneFreeGlobalState s, lan
 		float reward = imediateReward(car_s, car_s_star, adjecencyList);
 
 
-		r.setActionValue(actionIndex, reward + gamma * r.getBestActionValues()[actionIndex]);//q=r+g*SIMULATE
+		r.setActionValue(actionIndex, reward + gamma * r.getTemporaryBestActionValue());//q=r+g*SIMULATE
 
 		maxPlusGraph[i] = r;
 	}
@@ -475,10 +482,10 @@ int factoredValueMCTS::simulate(laneFreeGlobalState s, MaxPlus step, int depth) 
 	step.maxplus(); //Apply max plus algorithm to the graph.
 
 	laneFreeGlobalState s_star = generateNewState(s);
-
+	
 	simulate(s_star, step, depth + 1);
 
-	computeFactoredImediateReward(s, s_star, FVMCTS_GAMMA * depth);
+	computeFactoredImediateReward(s, s_star, pow(FVMCTS_GAMMA, depth));
 
 	updateGraphStats(s, step);
 
