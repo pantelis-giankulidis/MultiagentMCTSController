@@ -19,7 +19,7 @@ file(GLOB SOURCES "src/*.cpp")
 if(WIN32)
 	include (GenerateExportHeader)
 	#Generate the shared library from the sources
-	add_library(libLaneFreePlugin SHARED ${SOURCES} "src/MCTS.cpp" "src/MCTS.hpp" "src/utils.hpp" "src/laneFreeState.hpp" "src/carAction.hpp" "src/laneFreeSimulation.hpp"   "src/laneFreeGlobalState.cpp" "src/MaxPlus.cpp" "src/FactoredValueMCTS.hpp"  "src/utils.cpp" )
+	add_library(libLaneFreePlugin SHARED ${SOURCES} "src/MCTS.cpp" "src/MCTS.hpp" "src/utils.hpp" "src/laneFreeState.hpp" "src/carAction.hpp" "src/laneFreeSimulation.hpp"   "src/laneFreeGlobalState.cpp" "src/MaxPlus.cpp" "src/FactoredValueMCTS.hpp"  "src/utils.cpp"  )
 else()
 	#Generate the shared library from the sources (linux automatically assigns a lib at the beginning of the library)
 	add_library(LaneFreePlugin SHARED ${SOURCES})

@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{55D920E4-CC10-309E-BB83-7F0125E5003B}</ProjectGuid>
+    <ProjectGuid>{668547F1-CA6D-3F84-B358-9BD5AB661B58}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
@@ -66,7 +66,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\src;C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -76,7 +76,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\src;C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -86,7 +86,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\src;C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\src;C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -107,8 +107,8 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)\libLaneFreePlugin.vcxproj">
-      <Project>{11BB0321-4F0E-3C99-9734-943F4D5B469C}</Project>
+    <ProjectReference Include="C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\libLaneFreePlugin.vcxproj">
+      <Project>{8F82B1BA-437E-3100-917C-A2444AC3CCE8}</Project>
       <Name>libLaneFreePlugin</Name>
     </ProjectReference>
   </ItemGroup>

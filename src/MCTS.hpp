@@ -1,3 +1,4 @@
+#ifndef CPP_MCTS_MCTS_HPP
 #include <chrono>
 #include <cmath>
 #include <cstdlib>
@@ -6,8 +7,8 @@
 #include <memory>
 #include <random>
 #include <vector>
+#include "utils.hpp"
 
-#ifndef CPP_MCTS_MCTS_HPP
 #define CPP_MCTS_MCTS_HPP
 
 /**
@@ -485,9 +486,7 @@ public:
             
         
             float score = children[i]->getAvgScore();
-            double differenceFromDesiredSpeed = abs(desiredSpeed - children[i]->getData().getControlledCar().getVelocityX());
-
-            score = score + (500 / differenceFromDesiredSpeed);
+            
             if (score > bestScore) {
                 bestScore = score;
                 best = children[i];
@@ -568,7 +567,7 @@ private:
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
             
-            if (iterations > 500) {
+            if (iterations > 800) {
                 break;
             }
          
@@ -667,10 +666,10 @@ private:
         // Check if the end of the game is reached and generate the next state if
         // not
         int states = 1;
-
+        
         while (!termination->isTerminal(state)) {
             /* The simulation is for the first 30 steps ahead */
-            if (states >= 30) {
+            if (states >= 6) {
                 break;
             }
             P playout(&state);
@@ -680,15 +679,34 @@ private:
             states++;
         }
         
-        //Remove from score,possible collisions
-        float score;
-        if (states == 30) {
-            score = 0;
+        //action.getLater TODO get latest actions for a1,a2 for custom_pairwise_factor_function
+
+        double score = 0;
+        //Consider the distance from the desired speed
+        double desiredSpeed = root->getData().getControlledCar().getDesiredSpeed();
+        double differenceFromDesiredSpeed = abs(desiredSpeed - node.getData().getControlledCar().getVelocityX());
+
+        //Case when we had crush in the simulation
+        if (states <= 5) {
+            score = score - states;//TODO
         }
         else {
-            score = -(200 / states);
+            score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon
         }
-        
+
+
+        //std::cout << "Score before:" << score << std::endl;
+        Car agent = state.getControlledCar();
+        for (Car i : state.getParticipatingCars()) {//TODO average with number of cars
+            if (abs(agent.getPositionX() - i.getPositionX()) < 3 * SUMO_CAR_LENGTH) {
+                score = score + epsilon* //TODO check
+                    custom_pairwise_factor_function(agent.getPositionX(), agent.getPositionY(), agent.getVelocityX(), agent.getVelocityY(),
+                    i.getPositionX(), i.getPositionY(), i.getVelocityX(), i.getVelocityY(), 1, 0, 0, 0) / (epsilon + differenceFromDesiredSpeed);
+                
+            }
+                     
+        }
+        //std::cout << "Score after:" << score << std::endl;
         backProp(node, score);
     }
 

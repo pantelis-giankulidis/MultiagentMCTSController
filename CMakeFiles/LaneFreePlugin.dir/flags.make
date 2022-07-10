@@ -6,5 +6,5 @@ CXX_FLAGS = -g -fPIC
 
 CXX_DEFINES = -DLaneFreePlugin_EXPORTS
 
-CXX_INCLUDES = -I/mnt/c/Users/pgian/Dropbox/final_HMMY/diploma/trafficFluid/code/pantelis_monte_carlo_controller/src -I/mnt/c/Users/pgian/Dropbox/final_HMMY/diploma/trafficFluid/code/pantelis_monte_carlo_controller 
+CXX_INCLUDES = -I/mnt/c/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/src -I/mnt/c/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController 
 

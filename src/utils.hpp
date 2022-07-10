@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <fstream>
+#include <cstdlib>
 
 #define SIMULATION_CONSTANT_TIME 0.2
 #define SIMULATION_CONSTANT_TIME_SQUARED 0.04
@@ -16,6 +17,8 @@
 #define ROAD_WIDTH 10.2
 #define ROAD_SAFETY_GAP 0.2 
 #define GAMMA 0.6
+#define epsilon 0.001
+#define SUMO_CAR_LENGTH 2
 
 /*Factored value MCTS hyperparameters*/
 #define MAX_FVMCTS_DEPTH 3
@@ -23,8 +26,8 @@
 #define SIMULATIONS_FROM_ROOT 12
 #define DISTANCE_FOR_CREATING_EDGE 35
 #define EXPLORATION_TERM 0.5
-#define ALPHA 1
-#define BETA 0
+#define ALPHA 10
+#define BETA 50
 
 
 /*Max Plus hyperparameters */
@@ -32,7 +35,53 @@
 #define maxPlusMCSimulationRounds 2
 
 
-const std::vector<double> longitudinalAccelerationValues{ -2,-1,0,1,3 };
+/*Potential field parameters*/
+#define MAX_DECEL -3.5
+#define MAX_ACCEL 3.5
+#define MAX_LAT_ACCEL 1.5
+
+#define TREE_DEPTH 2
+
+#define ACTUAL_MAX_ACCEL 2
+#define ACTUAL_MAX_DECEL -2
+
+#define ACTUAL_MAX_LAT_ACCEL 1
+
+#define MAX_AGENTS_UPSTREAM 3
+#define MAX_AGENTS_DOWNSTREAM 3
+
+
+#define SAFETY_DIST_LONG_A 0.8
+#define SAFETY_DIST_LAT_B 0.8
+#define REACTION_TIME 0.3
+#define REACTION_TIME_LAT 0.45
+#define ELLIPSE_POW_X 2
+#define ELLIPSE_POW_Y 4
+#define ELLIPSE_POW_T 2
+
+#define MAX_VELOCITY_LONG 40
+#define MAX_VELOCITY_LAT 5
+
+#define ELLIPSE_MAGNITUDE 15
+
+#define TIMESTEP_LENGTH 0.25 //TODO, receive this value from SUMO
+
+#define MONITOR_AGENT_1_ID 71
+#define MONITOR_AGENT_2_ID 74
+
+
+#define ROAD_WIDTH 10.2 // TODO receive this value from the API, also it will not be constant when working with multiple road segments
+
+#define MAXIMUM(a, b) (((a) > (b))?(a):(b))
+#define MINIMUM(a, b) (((a) <= (b))?(a):(b))
+
+#define WALL_DN(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, -(safety)*v, MAXIMUM(0, y-0.5*w - (point)), -uymax_hard)
+#define WALL_UP(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, +(safety)*v, MAXIMUM(0, (point) - (y+0.5*w)), -uymax_hard)
+
+
+
+
+const std::vector<double> longitudinalAccelerationValues{ -2,-1,0,1,2 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
 const int availableActions = 15;
 
@@ -512,6 +561,8 @@ node getNodeByCarNumber(int carNumber);
 
 extern std::vector<node> maxPlusGraph;
 
+void custom_regulate_forces(double* fx, double* fy, double y, double vx, double vy, double w, double T, double roadwid_meters, double uymax_hard);
 
-
+double custom_pairwise_factor_function(double x1, double y1, double vx1, double vy1, double x2, double y2,
+	double vx2, double vy2, double axx1, double ayy1, double axx2, double ayy2);
 #endif
