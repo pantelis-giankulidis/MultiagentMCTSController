@@ -1,4 +1,4 @@
-The system is: Windows - 10.0.19042 - AMD64
+suThe system is: Windows - 10.0.19042 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler:  
 Build flags: 
@@ -92,71 +92,112 @@ The CXX compiler identification is MSVC, found in "C:/Users/dtrou/Desktop/kyriak
 Determining if the C compiler works passed with the following output:
 Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4077d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
-  testCCompiler.c
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4077d.dir\Debug\\" /Fd"cmTC_4077d.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\testCCompiler.c
-  cmTC_4077d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4077d.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4077d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+
+  testCCompiler.c
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4077d.dir\Debug\\" /Fd"cmTC_4077d.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\testCCompiler.c
+
+  cmTC_4077d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4077d.exe
+
 
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4c19d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
-  CMakeCCompilerABI.c
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4c19d.dir\Debug\\" /Fd"cmTC_4c19d.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCCompilerABI.c"
-  cmTC_4c19d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4c19d.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4c19d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+
+  CMakeCCompilerABI.c
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4c19d.dir\Debug\\" /Fd"cmTC_4c19d.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCCompilerABI.c"
+
+  cmTC_4c19d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4c19d.exe
+
 
 
 
 Determining if the CXX compiler works passed with the following output:
 Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_9006d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
-  testCXXCompiler.cxx
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9006d.dir\Debug\\" /Fd"cmTC_9006d.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
-  cmTC_9006d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_9006d.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_9006d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+
+  testCXXCompiler.cxx
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9006d.dir\Debug\\" /Fd"cmTC_9006d.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+
+  cmTC_9006d.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_9006d.exe
+
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_17cd8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
-  CMakeCXXCompilerABI.cpp
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_17cd8.dir\Debug\\" /Fd"cmTC_17cd8.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_17cd8.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_17cd8.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_17cd8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+
+  CMakeCXXCompilerABI.cpp
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_17cd8.dir\Debug\\" /Fd"cmTC_17cd8.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCXXCompilerABI.cpp"
+
+  cmTC_17cd8.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_17cd8.exe
+
 
 
 
 Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED succeeded with the following output:
 Change Dir: C:/Users/dtrou/Desktop/kyriakos_controller/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4ce72.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
-  src.cxx
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4ce72.dir\Debug\\" /Fd"cmTC_4ce72.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx
-C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\cmTC_4ce72.vcxproj]
-  cmTC_4ce72.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4ce72.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_4ce72.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.5.0+d4cbfca49 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.25.28612 for x64
+
+  src.cxx
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4ce72.dir\Debug\\" /Fd"cmTC_4ce72.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx
+
+C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\cmTC_4ce72.vcxproj]
+
+  cmTC_4ce72.vcxproj -> C:\Users\dtrou\Desktop\kyriakos_controller\CMakeFiles\CMakeTmp\Debug\cmTC_4ce72.exe
+
 
 
 Source file was:
@@ -2108,43 +2149,68 @@ The CXX compiler identification is MSVC, found in "C:/Users/pgian/Documents/fina
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_a05e9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCCompilerABI.c
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a05e9.dir\Debug\\" /Fd"cmTC_a05e9.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
-  cmTC_a05e9.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_a05e9.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_a05e9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCCompilerABI.c
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a05e9.dir\Debug\\" /Fd"cmTC_a05e9.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
+
+  cmTC_a05e9.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_a05e9.exe
+
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_3973f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_3973f.dir\Debug\\" /Fd"cmTC_3973f.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_3973f.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_3973f.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_3973f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCXXCompilerABI.cpp
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_3973f.dir\Debug\\" /Fd"cmTC_3973f.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
+
+  cmTC_3973f.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_3973f.exe
+
 
 
 
 Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED succeeded with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_b98ec.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  src.cxx
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_b98ec.dir\Debug\\" /Fd"cmTC_b98ec.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
-C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_b98ec.vcxproj]
-  cmTC_b98ec.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_b98ec.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_b98ec.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  src.cxx
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_b98ec.dir\Debug\\" /Fd"cmTC_b98ec.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
+
+C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_b98ec.vcxproj]
+
+  cmTC_b98ec.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_b98ec.exe
+
 
 
 Source file was:
@@ -2244,43 +2310,68 @@ The CXX compiler identification is MSVC, found in "C:/Users/pgian/Documents/fina
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ce533.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCCompilerABI.c
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce533.dir\Debug\\" /Fd"cmTC_ce533.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
-  cmTC_ce533.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_ce533.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ce533.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCCompilerABI.c
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ce533.dir\Debug\\" /Fd"cmTC_ce533.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
+
+  cmTC_ce533.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_ce533.exe
+
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_543b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_543b6.dir\Debug\\" /Fd"cmTC_543b6.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_543b6.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_543b6.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_543b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCXXCompilerABI.cpp
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_543b6.dir\Debug\\" /Fd"cmTC_543b6.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
+
+  cmTC_543b6.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_543b6.exe
+
 
 
 
 Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED succeeded with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ccdde.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  src.cxx
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_ccdde.dir\Debug\\" /Fd"cmTC_ccdde.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
-C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_ccdde.vcxproj]
-  cmTC_ccdde.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_ccdde.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ccdde.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  src.cxx
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_ccdde.dir\Debug\\" /Fd"cmTC_ccdde.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
+
+C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_ccdde.vcxproj]
+
+  cmTC_ccdde.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_ccdde.exe
+
 
 
 Source file was:
@@ -2380,43 +2471,68 @@ The CXX compiler identification is MSVC, found in "C:/Users/pgian/Documents/fina
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_190d3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCCompilerABI.c
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_190d3.dir\Debug\\" /Fd"cmTC_190d3.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
-  cmTC_190d3.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_190d3.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_190d3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCCompilerABI.c
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_190d3.dir\Debug\\" /Fd"cmTC_190d3.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
+
+  cmTC_190d3.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_190d3.exe
+
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_15173.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_15173.dir\Debug\\" /Fd"cmTC_15173.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_15173.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_15173.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_15173.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  CMakeCXXCompilerABI.cpp
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_15173.dir\Debug\\" /Fd"cmTC_15173.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
+
+  cmTC_15173.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_15173.exe
+
 
 
 
 Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED succeeded with the following output:
 Change Dir: C:/Users/pgian/Documents/final_HMMY/trafficFluid/MultiagentMCTSController/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_18346.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  src.cxx
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_18346.dir\Debug\\" /Fd"cmTC_18346.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
-C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_18346.vcxproj]
-  cmTC_18346.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_18346.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_18346.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.1+3e40a09f8 for .NET Framework
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30136 for x64
+
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+
+  src.cxx
+
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D COMPILER_HAS_DEPRECATED /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_18346.dir\Debug\\" /Fd"cmTC_18346.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx
+
+C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\src.cxx(2,25): warning C4996: 'somefunc': was declared deprecated [C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\cmTC_18346.vcxproj]
+
+  cmTC_18346.vcxproj -> C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\CMakeFiles\CMakeTmp\Debug\cmTC_18346.exe
+
 
 
 Source file was:

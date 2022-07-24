@@ -14,9 +14,17 @@ private:
 	/*Instances of the cars that are near the controlled car and affect its state and actions*/
 	std::vector<Car> participatingCars;
 
+	float score;
+	int numOfVisits;
+
 public:
 
 	laneFreeState();
+
+	void updateScore(float scor);
+
+	void increaseVisits();
+
 
 	// Add controlled agent's instance
 	void setAgentState(Car controlled);
@@ -48,6 +56,10 @@ public:
 
 	// check if the state has an accident occured
 	bool isAccidentState() const;
+
+	float getScore();
+
+	int getNumOfVisits();
 };
 
 /*

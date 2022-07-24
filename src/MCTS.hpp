@@ -688,7 +688,7 @@ private:
 
         //Case when we had crush in the simulation
         if (states <= 5) {
-            score = score - states;//TODO
+            score = score - 1/states;//TODO
         }
         else {
             score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon
@@ -699,7 +699,7 @@ private:
         Car agent = state.getControlledCar();
         for (Car i : state.getParticipatingCars()) {//TODO average with number of cars
             if (abs(agent.getPositionX() - i.getPositionX()) < 3 * SUMO_CAR_LENGTH) {
-                score = score + epsilon* //TODO check
+                score = score +  //TODO check
                     custom_pairwise_factor_function(agent.getPositionX(), agent.getPositionY(), agent.getVelocityX(), agent.getVelocityY(),
                     i.getPositionX(), i.getPositionY(), i.getVelocityX(), i.getVelocityY(), 1, 0, 0, 0) / (epsilon + differenceFromDesiredSpeed);
                 

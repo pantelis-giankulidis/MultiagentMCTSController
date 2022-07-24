@@ -7,17 +7,17 @@
 #include <fstream>
 #include <cstdlib>
 
-#define SIMULATION_CONSTANT_TIME 0.2
+#define SIMULATION_CONSTANT_TIME 0.25
 #define SIMULATION_CONSTANT_TIME_SQUARED 0.04
-#define MAX_ACCELERATION 1
-#define LONGITUDINAL_ACTIONS 5
+#define MAX_ACCELERATION 4
+#define LONGITUDINAL_ACTIONS 7
 #define LATERAL_ACTIONS 3
 #define MIN_DESIRED_SPEED 25
 #define MAX_DESIRED_SPEED 35
 #define ROAD_WIDTH 10.2
 #define ROAD_SAFETY_GAP 0.2 
 #define GAMMA 0.6
-#define epsilon 0.001
+#define epsilon 1
 #define SUMO_CAR_LENGTH 2
 
 /*Factored value MCTS hyperparameters*/
@@ -36,14 +36,14 @@
 
 
 /*Potential field parameters*/
-#define MAX_DECEL -3.5
-#define MAX_ACCEL 3.5
+#define MAX_DECEL -2
+#define MAX_ACCEL 2
 #define MAX_LAT_ACCEL 1.5
 
 #define TREE_DEPTH 2
 
-#define ACTUAL_MAX_ACCEL 2
-#define ACTUAL_MAX_DECEL -2
+#define ACTUAL_MAX_ACCEL 3
+#define ACTUAL_MAX_DECEL -3
 
 #define ACTUAL_MAX_LAT_ACCEL 1
 
@@ -81,9 +81,9 @@
 
 
 
-const std::vector<double> longitudinalAccelerationValues{ -2,-1,0,1,2 };
+const std::vector<double> longitudinalAccelerationValues{ -4,-2,-1,0,1,2,4 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
-const int availableActions = 15;
+const int availableActions = 21;
 
 class Car {
 private:

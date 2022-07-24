@@ -16,7 +16,7 @@ public:
 	static carAction calculateAction(const laneFreeState& state);
 
 private:
-	static laneFreeMCTS createMCTS(const laneFreeState& state);
+	static laneFreeMCTS* createMCTS(const laneFreeState& state);
 };
 #endif
 

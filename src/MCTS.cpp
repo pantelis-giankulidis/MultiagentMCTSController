@@ -100,6 +100,16 @@ double carAction::getLateralAccelerationValue() {
 */
 laneFreeState::laneFreeState() {
 	controlledCar = Car();
+	score = 0.0;
+	numOfVisits = 0;
+}
+
+void laneFreeState::updateScore(float scor) {
+	score += scor;
+}
+
+void laneFreeState::increaseVisits() {
+	numOfVisits += 1;
 }
 
 // Add controlled agent's position and other parameters
@@ -130,7 +140,6 @@ void laneFreeState::updateCar(Car c, int index) {
 int laneFreeState::getNumberOfCarsInRoads() const {
 	return static_cast<int>(participatingCars.size());
 }
-
 
 void laneFreeState::play(int l1, int l2) {
 
@@ -168,6 +177,13 @@ bool laneFreeState::isAccidentState() const {
 	}
 }
 
+float laneFreeState::getScore() {
+	return score/numOfVisits;
+}
+
+int laneFreeState::getNumOfVisits() {
+	return numOfVisits;
+}
 
 /*IMPLEMENTATIONS FOR THE FUNCTIONS OF THE resultBackpropagation CLASS IN THE laneFreeSimulation.hpp FILE
 * @updateScore -- backpropagates the score: backpropScore for the state given.

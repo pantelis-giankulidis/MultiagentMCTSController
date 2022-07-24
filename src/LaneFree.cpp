@@ -110,7 +110,7 @@ void simulation_step() {
 	}
 
 	int MCTSCars = 1;
-	int visibilityTarget = 80;
+	int visibilityTarget = 50;
 	double pos_x, pos_y, speed, speed_y, des_speed, ux, uy, length, width, TS = get_time_step_length();
 	int t = get_current_time_step();
 	int i, j;
@@ -173,8 +173,12 @@ void simulation_step() {
 	* */
 	if (RUNNING_AS_INDEPENDENT_AGENTS == 1) {
 
-		std::string car1 = "normal_flow.2";
-		std::string car2 = "normal_flow.5";
+		std::string car1 = "normal_flow.24";
+		std::string car2 = "normal_flow.23";
+
+		std::string car3 = "normal_flow.82";
+		std::string car4 = "normal_flow.85";
+
 
 		laneFreeState root;
 
@@ -199,19 +203,33 @@ void simulation_step() {
 				if (abs(get_position_x(myids[i]) - get_position_x(myids[j])) > visibilityTarget) {
 					continue;
 				}
+				if (get_global_position_x(myids[i]) - get_position_x(myids[j]) > 0) {// we are in front of car j
+					continue;
+				}
+				
+				
 
 				Car car = createCarFromSumo(j, myids);
 				root.addCar(car);
 			}
-
+			//std::cout << "Root size = " << sizeof(root) << std::endl;
 			/* After creating the initial state,run the MCTS algorithm and get the best action*/
 			carAction next = MCTSInstance::calculateAction(root);
+			//std::cout << "Root size after = " << sizeof(root) << std::endl;
 			/*if (get_vehicle_name(myids[i]) == car1 || get_vehicle_name(myids[i]) == car2) {
 				
 					logFile << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
 					logFile << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  " << std::endl;
 					logFile << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
 				
+			}
+
+			if (get_vehicle_name(myids[i]) == car3 || get_vehicle_name(myids[i]) == car4) {
+
+				logFile9 << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
+				logFile9 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  " << std::endl;
+				logFile9 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
+
 			}*/
 			/* Apply the best action to the controlled car*/
 			/* 1. Check if the car would exceed road limits if this action applies to it.
@@ -222,41 +240,38 @@ void simulation_step() {
 
 			////////////////////////////////////////
 
-			double newVelocity = root.getControlledCar().getVelocityY() + get_time_step_length() * next.getLateralAccelerationValue(); // v = u + at
-			double dLeft = (ROAD_WIDTH - ROAD_SAFETY_GAP - (root.getControlledCar().getWidth() / 2)) - root.getControlledCar().getPositionY(); // d(t)=boundary - vehicle_position
-			double dRight = (root.getControlledCar().getWidth() / 2) + ROAD_SAFETY_GAP - root.getControlledCar().getPositionY();
+			double newLateralVelocity = root.getControlledCar().getVelocityY() + get_time_step_length() * next.getLateralAccelerationValue(); // v = u + at
+			double newLateralPosition = root.getControlledCar().getPositionY() + get_time_step_length() * newLateralVelocity;
+
+			double boundaryUp = (ROAD_WIDTH - ROAD_SAFETY_GAP - (root.getControlledCar().getWidth() / 2));
+			double boundaryDown = (root.getControlledCar().getWidth() / 2) + ROAD_SAFETY_GAP;
 			
 			///////////////////////////////////////////
 			
 			
 			/// ///////////////////
 			
-			if (newVelocity >= sqrt(2 * MAX_ACCELERATION * abs(dLeft)) && newVelocity > 0) {
-				/*std::cout << "Current velocity --> " << root.getControlledCar().getVelocityY() << std::endl;
-				std::cout << "Out of bounds LEFT --> " << root.getControlledCar().getPositionY() << " Car-> "<< i << std::endl;
-				std::cout << "Velocity --> " << newVelocity << std::endl;
-				std::cout << "d(t) = " << abs(dLeft) << std::endl;
-				std::cout << "Applied = " << next.getLateralAccelerationValue() << std::endl;
-				std::cout << "To apply = " << root.getControlledCar().getVelocityY() / SIMULATION_CONSTANT_TIME << std::endl << "---------------" << std::endl;*/
-				// Cancel out MCTS and apply acceleration that keeps the cars inbound
-				//std::cout << "To get out of bounds!!" << std::endl;
-				next.setLateralAccelerationValue(-1 - (root.getControlledCar().getVelocityY() / SIMULATION_CONSTANT_TIME));
+			if (newLateralPosition>boundaryUp) {
+				//std::cout << "Boundary up=" << boundaryUp << ", pos=" << newLateralPosition << ",old pos=" << root.getControlledCar().getPositionY() << ",speed="<<get_speed_y(myids[i])<<std::endl;
+				next.setLateralAccelerationValue(get_speed_y(myids[i])>0?-(get_speed_y(myids[i])/SIMULATION_CONSTANT_TIME):next.getLateralAccelerationValue()>0?0:next.getLateralAccelerationValue());
 			}
 
 
 			/// ///////////////////
 			
-			if (abs(newVelocity) >= sqrt(2 * MAX_ACCELERATION * abs(dRight)) && newVelocity < 0) {
+			if (newLateralPosition < boundaryDown) {
 				
 				// Cancel out MCTS and apply acceleration that keeps the cars inbound
-				next.setLateralAccelerationValue(-(root.getControlledCar().getVelocityY() / SIMULATION_CONSTANT_TIME) + 1);
+				//std::cout << "Car "<<get_vehicle_name(myids[i])<<","<<"Boundary down = " << boundaryDown << ", pos = " << newLateralPosition << ", old pos = " << root.getControlledCar().getPositionY() << ", speed = " << get_speed_y(myids[i]) << std::endl;
+				next.setLateralAccelerationValue(get_speed_y(myids[i]) < 0 ? -(get_speed_y(myids[i]) / SIMULATION_CONSTANT_TIME) : next.getLateralAccelerationValue()<0?0:next.getLateralAccelerationValue());
 
 
 			}
 			
 			apply_acceleration(myids[i], next.getLongitudinalAccelerationValue(), next.getLateralAccelerationValue());
-			//free(&root);
+			
 		}
+
 
 
 	}
