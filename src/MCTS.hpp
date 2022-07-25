@@ -7,9 +7,12 @@
 #include <memory>
 #include <random>
 #include <vector>
+#include <unordered_map>
 #include "utils.hpp"
-
 #define CPP_MCTS_MCTS_HPP
+
+
+static std::ofstream nodestats;
 
 /**
  * @brief Children of this class should represent game states
@@ -266,7 +269,7 @@ class Node {
     E expansion;
     int numVisits = 0;
     float scoreSum = 0.0F;
-
+    
 public:
     /**
      * @brief Create a new node in the search tree
@@ -286,6 +289,7 @@ public:
         , action(std::move(action))
         , expansion(&this->data)
     {
+        nodestats << id << ",0,0" << std::endl;
     }
 
     /**
@@ -346,6 +350,9 @@ public:
         this->numVisits++;
     }
 
+    float getScoreSum() {
+        return scoreSum;
+    }
     /**
      * @return The total score divided by the number of visits.
      */
@@ -442,6 +449,7 @@ class MCTS {
     /** Random generator used in node selection */
     std::mt19937 generator;
 
+    
 public:
     /**
      * @note backprop, termination and scoring will be deleted by this MCTS
@@ -453,6 +461,8 @@ public:
         , scoring(scoring)
         , root(std::make_shared<Node<T, A, E>>(0, rootData, nullptr, A()))
     {
+        nodestats.open("n_stats.txt");
+        nodestats << root->getID() << "," << root->getNumVisits() << "," << root->getScoreSum() << std::endl;
     }
 
     MCTS(const MCTS& other) = default;
@@ -462,7 +472,7 @@ public:
     MCTS<T, A, E, P>& operator=(const MCTS<T, A, E, P>& other) = default;
     MCTS<T, A, E, P>& operator=(MCTS<T, A, E, P>&& other) noexcept = default;
     MCTS<T, A, E, P>() = default;
-
+    
     /**
      * @brief Runs the MCTS algorithm and searches for the best Action
      *
@@ -471,6 +481,7 @@ public:
     A calculateAction()
     {
         
+
         search();
        
         
@@ -479,11 +490,9 @@ public:
         auto& children = root->getChildren();
 
         double desiredSpeed = root->getData().getControlledCar().getDesiredSpeed();
-        
 
         for (unsigned int i = 0; i < children.size(); i++) {
             carAction g = children[i]->getAction();
-            
         
             float score = children[i]->getAvgScore();
             
@@ -563,6 +572,7 @@ private:
         std::chrono::system_clock::time_point old = std::chrono::system_clock::now();
         iterations = 0;
         
+
         
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
@@ -653,7 +663,7 @@ private:
         action.execute(expandedData);
         auto newNode = std::make_shared<Node<T, A, E>>(++currentNodeID, expandedData, node, action);
         node->addChild(newNode);
-       
+        
         return newNode;
     }
 
@@ -714,7 +724,7 @@ private:
     void backProp(Node<T, A, E>& node, float score)
     {
         
-        node.update(score);// backprop->updateScore(node.getData(), score));
+        node.update(backprop->updateScore(node.getData(), score));
        
         std::shared_ptr<Node<T, A, E>> current = node.getParent();
         
@@ -726,3 +736,5 @@ private:
 };
 
 #endif // CPP_MCTS_MCTS_HPP
+
+// copy C:\Users\pgian\Documents\final_HMMY\trafficFluid\MultiagentMCTSController\out\build\x64-Debug\libLaneFreePlugin.dll C:\opt\sumo\sumo_windows\lane_free_control_library\build

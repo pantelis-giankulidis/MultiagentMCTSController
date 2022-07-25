@@ -1,9 +1,11 @@
 #ifndef UTILSCPP
 #define UTILSCPP
 #include "utils.hpp"
-
+#include <tuple>
 
 std::vector<node> maxPlusGraph{};
+
+
 
 Car applyDynamics(Car c, int indexActionX, int indexActionY) {
 

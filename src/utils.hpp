@@ -6,6 +6,9 @@
 #include <chrono>
 #include <fstream>
 #include <cstdlib>
+#include <map>
+#include <tuple>
+
 
 #define SIMULATION_CONSTANT_TIME 0.25
 #define SIMULATION_CONSTANT_TIME_SQUARED 0.04
@@ -84,6 +87,8 @@
 const std::vector<double> longitudinalAccelerationValues{ -4,-2,-1,0,1,2,4 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
 const int availableActions = 21;
+//std::ofstream nodestats;
+
 
 class Car {
 private:
@@ -534,6 +539,34 @@ public:
 	}
 
 };
+
+/*Class representing statistics for individual node*/
+class treeNodeStats {
+private:
+	unsigned int id;
+	int numVisits = 0;
+	float scoreSum;
+public:
+	treeNodeStats(unsigned int id) {
+		this->numVisits = 0;
+		this->scoreSum = 0.0F;
+		this->id = id;
+	}
+
+	int getID() {
+		return id;
+	}
+
+	float getAvgScore() {
+		return scoreSum / numVisits;
+	}
+
+	void update(float score) {
+		this->numVisits++;
+		this->scoreSum += score;
+	}
+};
+
 
 double differenceFromDesiredSpeed(double desiredSpeed, double actualSpeed);
 

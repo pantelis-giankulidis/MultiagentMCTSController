@@ -17,20 +17,15 @@
 
 carAction MCTSInstance::calculateAction(const laneFreeState& state) {
 	auto mcts = createMCTS(state);
-    mcts->setC(2);// set c parameter of UCT formula
-    mcts->calculateAction();
-    /*if (mcts.getRoot().empty()) {
-
-    }*/
-    delete mcts;
-    return carAction(0.2, 0);
+    mcts.setC(2);// set c parameter of UCT formula
+    return mcts.calculateAction();
 }
 
-laneFreeMCTS* MCTSInstance::createMCTS(const laneFreeState& state) {
+laneFreeMCTS MCTSInstance::createMCTS(const laneFreeState& state) {
     auto backpropagation = new resultBackPropagation();
     auto terminationCheck = new finalState();
     auto scoring = new simulationResult();
-    return new laneFreeMCTS(laneFreeState(state), backpropagation, terminationCheck,scoring);
+    return laneFreeMCTS(laneFreeState(state), backpropagation, terminationCheck,scoring);
 }
 
 #endif
