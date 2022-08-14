@@ -8,11 +8,10 @@
 #include <random>
 #include <vector>
 #include <unordered_map>
+#include <tuple>
 #include "utils.hpp"
 #define CPP_MCTS_MCTS_HPP
 
-
-static std::ofstream nodestats;
 
 /**
  * @brief Children of this class should represent game states
@@ -289,9 +288,12 @@ public:
         , action(std::move(action))
         , expansion(&this->data)
     {
-        nodestats << id << ",0,0" << std::endl;
+        insertNewNodeScore(id);
     }
 
+    void insertIntoFile() {
+        insertNewNodeScore(id);
+    }
     /**
      * @return The unique ID of this node
      */
@@ -348,20 +350,24 @@ public:
     {
         this->scoreSum += score;
         this->numVisits++;
+        //updateNodeScore(id, score);
     }
 
-    float getScoreSum() {
-        return scoreSum;
-    }
     /**
      * @return The total score divided by the number of visits.
      */
-    float getAvgScore() const { return scoreSum / numVisits; }
+    float getAvgScore() const { 
+        return scoreSum / numVisits; 
+        //return getAvgNodeScore(id);
+    }
 
     /**
      * @return The number of times updateScore(score) was called
      */
-    int getNumVisits() const { return numVisits; }
+    int getNumVisits() const { 
+        return numVisits;
+        //return getNumNodeVisits(id);
+    }
 };
 
 /**
@@ -461,8 +467,7 @@ public:
         , scoring(scoring)
         , root(std::make_shared<Node<T, A, E>>(0, rootData, nullptr, A()))
     {
-        nodestats.open("n_stats.txt");
-        nodestats << root->getID() << "," << root->getNumVisits() << "," << root->getScoreSum() << std::endl;
+        //nodescores = std::vector<std::tuple<int, float>>(1000);
     }
 
     MCTS(const MCTS& other) = default;
@@ -572,12 +577,10 @@ private:
         std::chrono::system_clock::time_point old = std::chrono::system_clock::now();
         iterations = 0;
         
-
-        
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
             
-            if (iterations > 800) {
+            if (iterations > 300) {
                 break;
             }
          
@@ -662,6 +665,7 @@ private:
         
         action.execute(expandedData);
         auto newNode = std::make_shared<Node<T, A, E>>(++currentNodeID, expandedData, node, action);
+        node->insertIntoFile();
         node->addChild(newNode);
         
         return newNode;
@@ -676,9 +680,9 @@ private:
         // Check if the end of the game is reached and generate the next state if
         // not
         int states = 1;
-        
+        //std::cout << "pos()=" << state.getControlledCar().getPositionX() << std::endl;
         while (!termination->isTerminal(state)) {
-            /* The simulation is for the first 30 steps ahead */
+            // The simulation is for the first 6 steps ahead 
             if (states >= 6) {
                 break;
             }
@@ -698,20 +702,22 @@ private:
 
         //Case when we had crush in the simulation
         if (states <= 5) {
-            score = score - 1/states;//TODO
+            score = score - 10/states;//TODO
         }
         else {
             score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon
         }
-
+        
 
         //std::cout << "Score before:" << score << std::endl;
+        //std::cout << "pos<>=" << state.getControlledCar().getPositionX() << std::endl;
         Car agent = state.getControlledCar();
         for (Car i : state.getParticipatingCars()) {//TODO average with number of cars
-            if (abs(agent.getPositionX() - i.getPositionX()) < 3 * SUMO_CAR_LENGTH) {
-                score = score +  //TODO check
+            if (abs(agent.getPositionX() - i.getPositionX()) < 4 * SUMO_CAR_LENGTH) {
+                
+                score = score + //i.getVelocityX() - agent.getVelocityX();//TODO check
                     custom_pairwise_factor_function(agent.getPositionX(), agent.getPositionY(), agent.getVelocityX(), agent.getVelocityY(),
-                    i.getPositionX(), i.getPositionY(), i.getVelocityX(), i.getVelocityY(), 1, 0, 0, 0) / (epsilon + differenceFromDesiredSpeed);
+                        i.getPositionX(), i.getPositionY(), i.getVelocityX(), i.getVelocityY(), 1, 0, 0, 0)/(epsilon + differenceFromDesiredSpeed);
                 
             }
                      

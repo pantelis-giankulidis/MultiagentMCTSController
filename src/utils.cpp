@@ -4,8 +4,35 @@
 #include <tuple>
 
 std::vector<node> maxPlusGraph{};
+std::vector<std::tuple<int, float>> nodescores;
+std::ofstream nodestats;
+std::ifstream nodestatsread;
 
+void initializeScores() {
+	nodescores = std::vector<std::tuple<int, float>>(1000);
+	for (int i = 0; i < 1000; i++) {
+		nodescores[i] = std::make_tuple<int, float>(0, 0.0F);
+	}
+}
 
+void insertNewNodeScore(unsigned int id) {
+	std::get<0>(nodescores[id]) = 0;
+	std::get<1>(nodescores[id]) = 0.0F;
+}
+
+int getNumNodeVisits(unsigned int id) {
+	return std::get<0>(nodescores[id]);
+}
+
+float getAvgNodeScore(unsigned int id) {
+	return std::get<1>(nodescores[id]) / std::get<0>(nodescores[id]);
+}
+
+void updateNodeScore(unsigned int id, float score) {
+	std::get<0>(nodescores[id]) = std::get<0>(nodescores[id]) + 1;
+	std::get<1>(nodescores[id]) = std::get<1>(nodescores[id]) + score;
+
+}
 
 Car applyDynamics(Car c, int indexActionX, int indexActionY) {
 

@@ -18,7 +18,7 @@
 #define MIN_DESIRED_SPEED 25
 #define MAX_DESIRED_SPEED 35
 #define ROAD_WIDTH 10.2
-#define ROAD_SAFETY_GAP 0.2 
+#define ROAD_SAFETY_GAP 0.25 
 #define GAMMA 0.6
 #define epsilon 1
 #define SUMO_CAR_LENGTH 2
@@ -81,13 +81,13 @@
 #define WALL_DN(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, -(safety)*v, MAXIMUM(0, y-0.5*w - (point)), -uymax_hard)
 #define WALL_UP(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, +(safety)*v, MAXIMUM(0, (point) - (y+0.5*w)), -uymax_hard)
 
-
+#define SAFETY_GAP 1
 
 
 const std::vector<double> longitudinalAccelerationValues{ -4,-2,-1,0,1,2,4 };
-const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
+const std::vector<double> lateralAccelerationValues{ 0,-2,2 };
 const int availableActions = 21;
-//std::ofstream nodestats;
+
 
 
 class Car {
@@ -598,4 +598,13 @@ void custom_regulate_forces(double* fx, double* fy, double y, double vx, double 
 
 double custom_pairwise_factor_function(double x1, double y1, double vx1, double vy1, double x2, double y2,
 	double vx2, double vy2, double axx1, double ayy1, double axx2, double ayy2);
+
+
+
+void initializeScores();
+void insertNewNodeScore(unsigned int id);
+int getNumNodeVisits(unsigned int id);
+float getAvgNodeScore(unsigned int id);
+void updateNodeScore(unsigned int id, float score);
+
 #endif

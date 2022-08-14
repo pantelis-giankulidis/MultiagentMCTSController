@@ -31,6 +31,8 @@ std::ofstream logFile;
 std::ofstream logFile9;
 std::ofstream logFile12;
 
+
+
 Car createCarFromSumo(int index, NumericalID* myids) {
 	Car c = Car(index);
 
@@ -54,6 +56,7 @@ void simulation_initialize() {
 	logFile9.open("log9.txt");
 	logFile12.open("log12.txt");
 	
+	initializeScores();
 
 	//initialize srand with the same seed as sumo
 	srand(get_seed());
@@ -173,12 +176,15 @@ void simulation_step() {
 	* */
 	if (RUNNING_AS_INDEPENDENT_AGENTS == 1) {
 
-		std::string car1 = "normal_flow.24";
-		std::string car2 = "normal_flow.23";
+		
+		std::string car1 = "normal_flow.45";
+		std::string car2 = "normal_flow.38";
+		std::string car3 = "normal_flow.37";
 
-		std::string car3 = "normal_flow.82";
-		std::string car4 = "normal_flow.85";
-
+		std::string car4 = "normal_flow.100";
+		std::string car5 = "normal_flow.99";
+		std::string car6 = "normal_flow.97";
+		
 
 		laneFreeState root;
 
@@ -216,21 +222,21 @@ void simulation_step() {
 			/* After creating the initial state,run the MCTS algorithm and get the best action*/
 			carAction next = MCTSInstance::calculateAction(root);
 			//std::cout << "Root size after = " << sizeof(root) << std::endl;
-			/*if (get_vehicle_name(myids[i]) == car1 || get_vehicle_name(myids[i]) == car2) {
+			if (get_vehicle_name(myids[i]) == car1 || get_vehicle_name(myids[i]) == car2 || get_vehicle_name(myids[i]) == car3) {
 				
 					logFile << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
-					logFile << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  " << std::endl;
+					logFile << ",Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  , time=" << get_current_time_step() * get_time_step_length()<<std::endl;
 					logFile << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
 				
 			}
-
-			if (get_vehicle_name(myids[i]) == car3 || get_vehicle_name(myids[i]) == car4) {
+			
+			if (get_vehicle_name(myids[i]) == car4 || get_vehicle_name(myids[i]) == car5 || get_vehicle_name(myids[i]) == car5) {
 
 				logFile9 << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
-				logFile9 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  " << std::endl;
+				logFile9 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "   , time=" << get_current_time_step() * get_time_step_length() << std::endl;
 				logFile9 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
 
-			}*/
+			}
 			/* Apply the best action to the controlled car*/
 			/* 1. Check if the car would exceed road limits if this action applies to it.
 			   2. Change the lateral acceleration if necessary
@@ -272,7 +278,8 @@ void simulation_step() {
 			
 		}
 
-
+		logFile << "-----------------------------------------" << std::endl;
+		logFile9 << "------------------------------------------" << std::endl;
 
 	}
 

@@ -36,20 +36,13 @@ void carAction::execute(laneFreeState& state) {
 	int accelY = getLateralAccelerationValue();
 
 	if (accelX == DBL_MIN) {
-		std::cout << "Gatcha! " << std::endl;
 		accelX = 0;
 	}
 	if (accelY == DBL_MIN) {
-		std::cout << "Gatcha! " << std::endl;
 		accelY = 0;
 	}
 	double oldVelocityX = controlledCar.getVelocityX();
 	double oldVelocityY = controlledCar.getVelocityY();
-	//double sx = controlledCar.getPositionX();
-	//std::cout << "Old velocity : " << oldVelocityX << ", " << oldVelocityY << std::endl;
-	//std::cout << "Acceleration : " << accelX << ", " << accelY << std::endl;
-	//std::cout << "New velocity : " << oldVelocityX + accelX * SIMULATION_CONSTANT_TIME << " , " << oldVelocityY + accelY * SIMULATION_CONSTANT_TIME << std::endl;
-	//std::cout << "New position : " << controlledCar.getPositionX() + oldVelocityX * SIMULATION_CONSTANT_TIME + (1 / 2) * accelX * SIMULATION_CONSTANT_TIME_SQUARED << " , " << controlledCar.getPositionY() + oldVelocityY * SIMULATION_CONSTANT_TIME + (1 / 2) * accelY * SIMULATION_CONSTANT_TIME_SQUARED << std::endl;
 
 	controlledCar.setVelocity(oldVelocityX + accelX * SIMULATION_CONSTANT_TIME, oldVelocityY + accelY * SIMULATION_CONSTANT_TIME);
 	controlledCar.setPosition(controlledCar.getPositionX() + oldVelocityX * SIMULATION_CONSTANT_TIME + (1 / 2) * accelX * SIMULATION_CONSTANT_TIME_SQUARED, controlledCar.getPositionY() + oldVelocityY * SIMULATION_CONSTANT_TIME + (1 / 2) * accelY * SIMULATION_CONSTANT_TIME_SQUARED);
@@ -302,7 +295,7 @@ bool finalState::isTerminal(const laneFreeState& state) {
 	for (Car c2 : carsInTheRoad) {
 
 		minDistanceY = ((c.getWidth() / 2) + (c2.getWidth() / 2));
-		minDistanceX = ((c.getLength() / 2) + (c2.getLength() / 2));
+		minDistanceX = ((c.getLength() / 2) + (c2.getLength() / 2)) + SAFETY_GAP;
 
 		diffInX = c.getPositionX() > c2.getPositionX() ? c.getPositionX() - c2.getPositionX() : c2.getPositionX() - c.getPositionX();
 		diffInY = c.getPositionY() > c2.getPositionY() ? c.getPositionY() - c2.getPositionY() : c2.getPositionY() - c.getPositionY();

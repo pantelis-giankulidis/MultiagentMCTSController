@@ -16,6 +16,7 @@
 
 
 carAction MCTSInstance::calculateAction(const laneFreeState& state) {
+    
 	auto mcts = createMCTS(state);
     mcts.setC(2);// set c parameter of UCT formula
     return mcts.calculateAction();
