@@ -59,8 +59,8 @@ void simulation_initialize() {
 	initializeScores();
 
 	//initialize srand with the same seed as sumo
-	srand(get_seed());
-	//srand(time(0));
+	//srand(get_seed());
+	srand(time(0));
 
 	//insert 20 vehicles
 	int n_init = 0;
@@ -177,13 +177,17 @@ void simulation_step() {
 	if (RUNNING_AS_INDEPENDENT_AGENTS == 1) {
 
 		
-		std::string car1 = "normal_flow.45";
-		std::string car2 = "normal_flow.38";
-		std::string car3 = "normal_flow.37";
+		std::string car1 = "normal_flow.177";
+		std::string car2 = "normal_flow.175";
+		std::string car3 = "normal_flow.huhu";
 
-		std::string car4 = "normal_flow.100";
-		std::string car5 = "normal_flow.99";
-		std::string car6 = "normal_flow.97";
+		std::string car4 = "normal_flow.409";
+		std::string car5 = "normal_flow.411";
+		std::string car6 = "normal_flow.jjj";
+
+		std::string car7 = "normal_flow.155";
+		std::string car8 = "normal_flow.158";
+
 		
 
 		laneFreeState root;
@@ -237,6 +241,14 @@ void simulation_step() {
 				logFile9 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
 
 			}
+
+			if (get_vehicle_name(myids[i]) == car7 || get_vehicle_name(myids[i]) == car8) {
+				logFile12 << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
+				logFile12 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "   , time=" << get_current_time_step() * get_time_step_length() << std::endl;
+				logFile12 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
+			}
+
+
 			/* Apply the best action to the controlled car*/
 			/* 1. Check if the car would exceed road limits if this action applies to it.
 			   2. Change the lateral acceleration if necessary
@@ -274,8 +286,14 @@ void simulation_step() {
 
 			}
 			
-			apply_acceleration(myids[i], next.getLongitudinalAccelerationValue(), next.getLateralAccelerationValue());
+			if (next.getLongitudinalAccelerationValue() > 0 && (get_speed_x(myids[i]) >= get_desired_speed(myids[i]))) {
+				apply_acceleration(myids[i], 0, next.getLateralAccelerationValue());
+			}
+			else {
+				apply_acceleration(myids[i], next.getLongitudinalAccelerationValue(), next.getLateralAccelerationValue());
+			}
 			
+			//apply_acceleration(myids[i], next.getLongitudinalAccelerationValue(), next.getLateralAccelerationValue());
 		}
 
 		logFile << "-----------------------------------------" << std::endl;

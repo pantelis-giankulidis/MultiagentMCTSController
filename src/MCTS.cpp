@@ -294,7 +294,7 @@ bool finalState::isTerminal(const laneFreeState& state) {
 
 	for (Car c2 : carsInTheRoad) {
 
-		minDistanceY = ((c.getWidth() / 2) + (c2.getWidth() / 2));
+		minDistanceY = ((c.getWidth() / 2) + (c2.getWidth() / 2)) + SAFETY_GAP/2;
 		minDistanceX = ((c.getLength() / 2) + (c2.getLength() / 2)) + SAFETY_GAP;
 
 		diffInX = c.getPositionX() > c2.getPositionX() ? c.getPositionX() - c2.getPositionX() : c2.getPositionX() - c.getPositionX();

@@ -13,7 +13,7 @@
 #define SIMULATION_CONSTANT_TIME 0.25
 #define SIMULATION_CONSTANT_TIME_SQUARED 0.04
 #define MAX_ACCELERATION 4
-#define LONGITUDINAL_ACTIONS 7
+#define LONGITUDINAL_ACTIONS 5
 #define LATERAL_ACTIONS 3
 #define MIN_DESIRED_SPEED 25
 #define MAX_DESIRED_SPEED 35
@@ -84,9 +84,9 @@
 #define SAFETY_GAP 1
 
 
-const std::vector<double> longitudinalAccelerationValues{ -4,-2,-1,0,1,2,4 };
-const std::vector<double> lateralAccelerationValues{ 0,-2,2 };
-const int availableActions = 21;
+const std::vector<double> longitudinalAccelerationValues{ -5,-2,0,2,5 };
+const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
+const int availableActions = 15;
 
 
 

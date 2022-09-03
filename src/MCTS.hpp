@@ -580,7 +580,7 @@ private:
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
             
-            if (iterations > 300) {
+            if (iterations > 80) {
                 break;
             }
          
@@ -705,7 +705,7 @@ private:
             score = score - 10/states;//TODO
         }
         else {
-            score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon
+           score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon 
         }
         
 
