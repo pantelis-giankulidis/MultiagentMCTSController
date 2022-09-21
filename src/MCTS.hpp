@@ -580,7 +580,7 @@ private:
         while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - old) < allowedComputationTime) {
             iterations++;
             
-            if (iterations > 80) {
+            if (iterations > 300) {
                 break;
             }
          

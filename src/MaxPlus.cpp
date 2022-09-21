@@ -30,8 +30,8 @@ public:
 		this->C = EXPLORATION_TERM;
 		this->numberOfAgents = numberOfAgents;
 		this->edgeExplorationFlag = 1;
-		this->nodeExplorationFlag = 0;
-		this->normalizationFlag = 0;
+		this->nodeExplorationFlag = 1;
+		this->normalizationFlag = 1;
 		this->gamma = FVMCTS_GAMMA;
 	}
 
@@ -62,7 +62,10 @@ public:
 
 		/* Creating the edges of the graph*/
 		for (int i = 0; i < maxPlusGraph.size(); i++) {
-			for (int j = i + 1; j < maxPlusGraph.size(); j++) {
+			for (int j = 0; j < maxPlusGraph.size(); j++) {
+				if (i == j) {
+					continue;
+				}
 				if (abs(maxPlusGraph[i].getCar().getPositionX() - maxPlusGraph[j].getCar().getPositionX()) < DISTANCE_FOR_CREATING_EDGE) {
 					edge* e = new edge(maxPlusGraph[i].getCar().getCarNumber(), maxPlusGraph[j].getCar().getCarNumber());
 					maxPlusGraph[i].addEdge(e);
@@ -143,10 +146,10 @@ public:
 			calculateNodeQAndGetBestAction();
 
 		}
-		std::cout << "MAXPLUS ENDED WITH: " << std::endl;
+		/*std::cout << "MAXPLUS ENDED WITH: " << std::endl;
 		for (int i = 0; i < maxPlusGraph.size(); i++) {
 			std::cout << " agent " << maxPlusGraph[i].getCar().getCarNumber() << ", action = " << maxPlusGraph[i].getTemporaryBestActionIndex() << ", q=" << maxPlusGraph[i].getTemporaryBestActionValue() << std::endl;
-		}
+		}*/
 	}
 
 
@@ -174,9 +177,12 @@ public:
 			rounds++;
 
 			// Add exploration terms in the last iteration
-			if (rounds == maxPlusMessagePassingPerRound - 1) {
-				edgeExplorationFlag = 0;
+			if (rounds == maxPlusMessagePassingPerRound - 2) {
 				normalizationFlag = 0;
+			}
+			if(rounds == maxPlusMessagePassingPerRound - 1){
+				edgeExplorationFlag = 0;
+				normalizationFlag = 1;
 			}
 
 			// For all agents i
@@ -189,13 +195,13 @@ public:
 					edge* e = agent.getAdjacencyList()[j];
 					bool is_i = agent.getCar().getCarNumber() == e->getCarNumberI();
 
+					// For all actions of agent i
 					for (int action = 0; action < availableActions; action++) {
-
 
 						//UPDATE
 						for (int actionj = 0; actionj < availableActions; actionj++) {
 							//std::cout << "AJ="<<actionj << std::endl;
-							float newMij = agent.getQ()[action] + e->getQij()[is_i ? action : actionj][is_i ? actionj : action];// +sumOfMki(agent, e, action);
+							float newMij = agent.getQ()[action] + e->getQij()[is_i ? action : actionj][is_i ? actionj : action] +sumOfMki(agent, e, action);
 							float qij = e->getQij()[is_i ? action : actionj][is_i ? actionj : action];
 							if (edgeExplorationFlag == 0) {
 
@@ -241,9 +247,12 @@ public:
 			float BestQ = -10000;
 
 			for (int actionIndex = 0; actionIndex < availableActions; actionIndex++) {
+				float qs = nod.getQ()[actionIndex];
 
-				float q = nod.getQ()[actionIndex];// +sumOfMki(nod, NULL, actionIndex);
-
+				float smi = sumOfMki(nod, NULL, actionIndex);
+				float q = qs + smi;
+				//float q = nod.getQ()[actionIndex] +sumOfMki(nod, NULL, actionIndex);
+				std::cout << "car="<<nod.getCar().getCarNumber()<<",action = "<<actionIndex<<", q = " << qs << ", smi = "<<smi<<", Q = "<<q<<std::endl;
 				if (nodeExplorationFlag == 0) {
 					q = q + C * sqrt(log(vectorSum(nod.getNi()) + 1) / nod.getNi()[actionIndex]);
 				}
@@ -260,6 +269,9 @@ public:
 						//std::cout << "HAD A TIE" << std::endl;
 						BestQ = q;
 						pickedActionIndex = actionIndex;
+					}
+					else {
+						//std::cout << "Not a TIE" << std::endl;
 					}
 				}
 				
@@ -282,7 +294,7 @@ public:
 				nod.setEdge(p, e);
 			}
 			maxPlusGraph[i] = nod;
-
+			//std::cout << "Node: " << nod.getCar().getCarNumber() << "  bestq=" << nod.getTemporaryBestActionValue() << ", i=" << nod.getTemporaryBestActionIndex() << std::endl;
 		}
 
 	}
@@ -330,7 +342,7 @@ public:
 			}
 			bool is_i = agent.getCar().getCarNumber() == e->getCarNumberI();
 			sumofmki = sumofmki + is_i ? e->getBestM_ifJgetsActionI(action) : e->getBestM_ifIgetsActionJ(action);
-
+			//std::cout << "    sumofmki = " << sumofmki << std::endl;
 		}
 		return sumofmki;
 	}

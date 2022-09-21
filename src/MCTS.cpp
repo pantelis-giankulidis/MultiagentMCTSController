@@ -50,8 +50,15 @@ void carAction::execute(laneFreeState& state) {
 	// Compute other car's dynamics
 	// Assume no acceleration applied
 	int index = 0;
+	srand(time(NULL));
+
+	int randx = 0;
+	int randy = 0;
 	for (Car c : state.getParticipatingCars()) {
+		randy = (rand() % lateralAccelerationValues.size());
+		randx = (rand() % longitudinalAccelerationValues.size());
 		c.setPosition(c.getPositionX() + c.getVelocityX() * SIMULATION_CONSTANT_TIME, c.getPositionY() + c.getVelocityY() * SIMULATION_CONSTANT_TIME);
+		c.setVelocity(c.getVelocityX() + randx * SIMULATION_CONSTANT_TIME, c.getVelocityY() + randy * SIMULATION_CONSTANT_TIME);
 		state.updateCar(c, index);
 		index++;
 	}
@@ -368,6 +375,7 @@ void factoredValueMCTS::updateGraphStats(laneFreeGlobalState s, MaxPlus step) {
 		node nod = maxPlusGraph[i];
 		//std::cout << "nod.getN()=" << nod.getN() << std::endl;
 		//std::cout << "nod.getNi()[actionIndex] = " << nod.getNi()[actionIndex] << std::endl;
+		
 		//Update node statistics
 		nod.setN(nod.getN() + 1);
 		

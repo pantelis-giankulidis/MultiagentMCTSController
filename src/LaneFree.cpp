@@ -21,7 +21,7 @@
 #define ROAD_WIDTH 10.2
 #define ROAD_SAFETY_GAP 0.2 
 #define CARS_IN_SIMULATION 200
-#define RUNNING_AS_INDEPENDENT_AGENTS 1
+#define RUNNING_AS_INDEPENDENT_AGENTS 0
 #define FVMCTS_LIMIT 10
 
 std::vector<timestampStatistics> stats{};
@@ -144,21 +144,37 @@ void simulation_step() {
 					std::cout << "Desired speed = " << nod.getCar().getDesiredSpeed() << ", actual speed=" << nod.getCar().getVelocityX() << std::endl;
 					int j = nod.getCar().getCarNumber();
 					if (strcmp(get_vehicle_name(myids[j]), "normal_flow.4") == 0) {
-						logFile << "Car=" << get_vehicle_name(myids[j]) << ", " << get_speed_x(myids[j]) << ", " << get_desired_speed(myids[j]) << ", " << "posx= "<<get_position_x(myids[j])<<", "<< actionIndex << std::endl;
+						logFile << "Car=" << get_vehicle_name(myids[j]) << ", " << get_speed_x(myids[j]) << ", " << get_desired_speed(myids[j]) << ", " << "posx= " << get_position_x(myids[j]) << ", " << actionIndex << std::endl;
 						for (float f : nod.getQ()) {
 							logFile << " action : value = " << f << std::endl;
 						}
 					}
-					/*if (strcmp(get_vehicle_name(myids[j]), "normal_flow.9") == 0) {
-						logFile9 << "Car=" << get_vehicle_name(myids[j]) << ", " << get_speed_x(myids[j]) << ", " << get_desired_speed(myids[j]) << ", " << "posx= " << get_position_x(myids[j]) << ", " << actionIndex << std::endl;
+
+					double newLateralVelocity = nod.getCar().getVelocityY() + get_time_step_length() * lateralAccelerationValues[action.quot]; // v = u + at
+					double newLateralPosition = nod.getCar().getPositionY() + get_time_step_length() * newLateralVelocity;
+
+					double boundaryUp = (ROAD_WIDTH - ROAD_SAFETY_GAP - (nod.getCar().getWidth() / 2));
+					double boundaryDown = (nod.getCar().getWidth() / 2) + ROAD_SAFETY_GAP;
+
+					///////////////////////////////////////////
+
+
+					/// ///////////////////
+
+					if (newLateralPosition > boundaryUp) {
+						apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues.at(action.rem), -1);
 					}
-					if(strcmp(get_vehicle_name(myids[j]), "normal_flow.12") == 0) {
-						logFile12 << "Car=" << get_vehicle_name(myids[j]) << ", " << get_speed_x(myids[j]) << ", " << get_desired_speed(myids[j]) << ", " << "posx= " << get_position_x(myids[j]) << ", " <<actionIndex<<std::endl;
-					}*/
-					apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues.at(action.rem), lateralAccelerationValues[action.quot]);
+					else {
+						if (newLateralPosition < boundaryDown) {
+							apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues.at(action.rem), 1);
+						}
+						else {
+							apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues.at(action.rem), lateralAccelerationValues[action.quot]);
+						}
+					}
 				}
 				else {
-					apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues[3], lateralAccelerationValues[0]);
+					apply_acceleration(myids[nod.getCar().getCarNumber()], longitudinalAccelerationValues[2], lateralAccelerationValues[0]);
 				}
 			}
 			maxPlusGraph.clear();

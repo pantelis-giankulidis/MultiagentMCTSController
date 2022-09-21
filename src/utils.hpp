@@ -24,13 +24,13 @@
 #define SUMO_CAR_LENGTH 2
 
 /*Factored value MCTS hyperparameters*/
-#define MAX_FVMCTS_DEPTH 3
-#define FVMCTS_GAMMA 0.95
-#define SIMULATIONS_FROM_ROOT 12
-#define DISTANCE_FOR_CREATING_EDGE 35
-#define EXPLORATION_TERM 0.5
-#define ALPHA 10
-#define BETA 50
+#define MAX_FVMCTS_DEPTH 2
+#define FVMCTS_GAMMA 0.85
+#define SIMULATIONS_FROM_ROOT 8
+#define DISTANCE_FOR_CREATING_EDGE 30
+#define EXPLORATION_TERM 0.0001f
+#define ALPHA 5
+#define BETA 2
 
 
 /*Max Plus hyperparameters */
@@ -84,9 +84,9 @@
 #define SAFETY_GAP 1
 
 
-const std::vector<double> longitudinalAccelerationValues{ -5,-2,0,2,5 };
-const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
-const int availableActions = 15;
+const std::vector<double> longitudinalAccelerationValues{ -5,-2,-1,0,1,2,5 };
+const std::vector<double> lateralAccelerationValues{ 0,-1,1};
+const int availableActions = 21;
 
 
 
@@ -273,6 +273,7 @@ public:
 	}
 
 	void setMij(int indexi, int indexj, float value) {
+		//std::cout << "+++  SETTING mij for " << indexi << ", " << indexj << "  is " << value << std::endl;
 		this->mij[indexi][indexj] = value;
 	}
 
@@ -281,7 +282,7 @@ public:
 	}
 
 	void setMji(int indexi, int indexj, float value) {
-		//std::cout << "SETTING mji for " << indexi << ", " << indexj << "  is " << value << std::endl;
+		//std::cout << "***   SETTING mji for " << indexi << ", " << indexj << "  is " << value << std::endl;
 		this->mji[indexi][indexj] = value;
 	}
 
@@ -391,18 +392,18 @@ public:
 		return max;
 	}
 
-	float getMijRowSum(int indexRow) {
+	float getMijRowSum(int indexColumn) {
 		float totalSum = 0;
 		for (int i = 0; i < availableActions; i++) {
-			totalSum = totalSum + mij[indexRow][i];
+			totalSum = totalSum + mji[i][indexColumn];
 		}
 		return totalSum;
 	}
 
-	float getMjiRowSum(int indexRow) {
+	float getMjiRowSum(int indexColumn) {
 		float totalSum = 0;
 		for (int i = 0; i < availableActions; i++) {
-			totalSum = totalSum + mji[indexRow][i];
+			totalSum = totalSum + mij[i][indexColumn];
 		}
 		return totalSum;
 	}
@@ -429,7 +430,7 @@ public:
 	node(Car car) {
 		this->car = car;
 		this->N = 0;
-		this->Q = std::vector<float>(availableActions, 1);//Initialize quality of move
+		this->Q = std::vector<float>(availableActions, 0);//Initialize quality of move
 		this->Ni = std::vector<int>(availableActions, 1);
 		this->temporaryBestActionIndex = 2;//zero acceleration
 		this->temporaryBestActionValue = 0;
