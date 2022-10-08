@@ -29,7 +29,7 @@ public:
 	MaxPlus(int numberOfAgents) {
 		this->C = EXPLORATION_TERM;
 		this->numberOfAgents = numberOfAgents;
-		this->edgeExplorationFlag = 1;
+		this->edgeExplorationFlag = 0;
 		this->nodeExplorationFlag = 1;
 		this->normalizationFlag = 1;
 		this->gamma = FVMCTS_GAMMA;
@@ -177,13 +177,13 @@ public:
 			rounds++;
 
 			// Add exploration terms in the last iteration
-			if (rounds == maxPlusMessagePassingPerRound - 2) {
+			/*if (rounds == maxPlusMessagePassingPerRound - 2) {
 				normalizationFlag = 0;
 			}
 			if(rounds == maxPlusMessagePassingPerRound - 1){
-				edgeExplorationFlag = 0;
+				//edgeExplorationFlag = 0;
 				normalizationFlag = 1;
-			}
+			}*/
 
 			// For all agents i
 			for (int i = 0; i < maxPlusGraph.size(); i++) {
@@ -203,20 +203,22 @@ public:
 							//std::cout << "AJ="<<actionj << std::endl;
 							float newMij = agent.getQ()[action] + e->getQij()[is_i ? action : actionj][is_i ? actionj : action] +sumOfMki(agent, e, action);
 							float qij = e->getQij()[is_i ? action : actionj][is_i ? actionj : action];
-							if (edgeExplorationFlag == 0) {
+							if (edgeExplorationFlag == 1) {
 
 								//std::cout << "ACTION "<<action<<" , aj="<<actionj<<", edge exploration components : Q(ai) = " << agent.getQ()[action] << ", Qij(aj)="<<qij<<",N="<<agent.getN()<<", log(N + 1) = " << log(agent.getN() + 1) << ", Ni(ai) = " << e->getNij()[is_i ? action : e->getBestActionIndexI()][is_i ? e->getBestActionIndexJ() : action] << std::endl;
 								newMij = newMij + C * sqrt(log(agent.getN() + 1) / (e->getNij()[is_i ? action : actionj][is_i ? actionj : action] + 1));
 							}
 
 							if (is_i) {
-								if (normalizationFlag == 0) {
+								if (normalizationFlag == 1) {
+									//std::cout << "oldnewmij = " << newMij << std::endl;
 									newMij = newMij - (e->getMijRowSum(action) / availableActions);
+									//std::cout << "newmij = " << newMij << std::endl;
 								}
 								e->setMij(action, actionj, newMij);
 							}
 							else {
-								if (normalizationFlag == 0) {
+								if (normalizationFlag == 1) {
 									newMij = newMij - (e->getMjiRowSum(action) / availableActions);
 								}
 								e->setMji(action, actionj, newMij);
@@ -231,8 +233,9 @@ public:
 
 
 		}
-		edgeExplorationFlag = 1;
-		normalizationFlag = 1;
+		//edgeExplorationFlag = 1;
+		//normalizationFlag = 1;
+		
 	}
 
 
@@ -243,20 +246,37 @@ public:
 
 		for (int i = 0; i < maxPlusGraph.size(); i++) {
 			node nod = maxPlusGraph[i];
-			int pickedActionIndex = 2;
+			int pickedActionIndex = 1;
 			float BestQ = -10000;
-
+			/*if (nod.getCar().getCarNumber() == 1) {
+				edge* e = nod.getAdjacencyList()[0];
+				bool is_i = nod.getCar().getCarNumber() == e->getCarNumberI();
+				if (is_i) {
+					e->printMij();
+					std::cout << "-----hhhhjjjj------" << std::endl;
+					e->printMji();
+				}
+				else {
+					e->printMji();
+					std::cout << "-----hhhhjjjj------" << std::endl;
+					e->printMij();
+				}
+			}*/
 			for (int actionIndex = 0; actionIndex < availableActions; actionIndex++) {
 				float qs = nod.getQ()[actionIndex];
 
 				float smi = sumOfMki(nod, NULL, actionIndex);
 				float q = qs + smi;
 				//float q = nod.getQ()[actionIndex] +sumOfMki(nod, NULL, actionIndex);
-				std::cout << "car="<<nod.getCar().getCarNumber()<<",action = "<<actionIndex<<", q = " << qs << ", smi = "<<smi<<", Q = "<<q<<std::endl;
-				if (nodeExplorationFlag == 0) {
+				//std::cout << "car="<<nod.getCar().getCarNumber()<<",action = "<<actionIndex<<", q = " << qs << ", smi = "<<smi<<", Q = "<<q<<std::endl;
+				if (nodeExplorationFlag == 1) {
 					q = q + C * sqrt(log(vectorSum(nod.getNi()) + 1) / nod.getNi()[actionIndex]);
 				}
 
+				/*if (nod.getCar().getCarNumber() == 1) {
+					std::cout << "action=" << actionIndex << ",q[i]=" << qs<<",sumofmki="<<smi<<",q="<<q <<std::endl;
+					std::cout << "-----N=" << vectorSum(nod.getNi()) + 1 << ",n=" << nod.getNi()[actionIndex] << std::endl;
+				}*/
 				if (q > BestQ) {
 					//std::cout << "CHECK FOR BIGGER" << std::endl;
 					BestQ = q;
@@ -344,7 +364,7 @@ public:
 			sumofmki = sumofmki + is_i ? e->getBestM_ifJgetsActionI(action) : e->getBestM_ifIgetsActionJ(action);
 			//std::cout << "    sumofmki = " << sumofmki << std::endl;
 		}
-		return sumofmki;
+		return sumofmki/availableActions;
 	}
 
 	/*	Getter and setter for the number of agents  */

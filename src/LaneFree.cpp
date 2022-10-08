@@ -21,7 +21,7 @@
 #define ROAD_WIDTH 10.2
 #define ROAD_SAFETY_GAP 0.2 
 #define CARS_IN_SIMULATION 200
-#define RUNNING_AS_INDEPENDENT_AGENTS 0
+#define RUNNING_AS_INDEPENDENT_AGENTS 1
 #define FVMCTS_LIMIT 10
 
 std::vector<timestampStatistics> stats{};
@@ -60,7 +60,7 @@ void simulation_initialize() {
 
 	//initialize srand with the same seed as sumo
 	//srand(get_seed());
-	srand(time(0));
+	srand(get_seed());
 
 	//insert 20 vehicles
 	int n_init = 0;
@@ -140,8 +140,8 @@ void simulation_step() {
 				int actionIndex = nod.getBestAction();
 				std::div_t action = std::div(actionIndex, longitudinalAccelerationValues.size());
 				if (nod.getAdjacencyList().size() > 0) {
-					std::cout << "Action taken from " << nod.getCar().getCarNumber() << " is " << actionIndex << std::endl;
-					std::cout << "Desired speed = " << nod.getCar().getDesiredSpeed() << ", actual speed=" << nod.getCar().getVelocityX() << std::endl;
+					//std::cout << "Action taken from " << nod.getCar().getCarNumber() << " is " << actionIndex << std::endl;
+					//std::cout << "Desired speed = " << nod.getCar().getDesiredSpeed() << ", actual speed=" << nod.getCar().getVelocityX() << std::endl;
 					int j = nod.getCar().getCarNumber();
 					if (strcmp(get_vehicle_name(myids[j]), "normal_flow.4") == 0) {
 						logFile << "Car=" << get_vehicle_name(myids[j]) << ", " << get_speed_x(myids[j]) << ", " << get_desired_speed(myids[j]) << ", " << "posx= " << get_position_x(myids[j]) << ", " << actionIndex << std::endl;
@@ -403,12 +403,13 @@ void simulation_finalize() {
 	/*
 	* WRITING STATISTICS TO FILE
 	*/
-	myFile.open("stats.csv");
-	myFile << "Collisions,out_of_bounds,speedDiff" << std::endl;
-
+	myFile.open("stats7000.csv");
+	myFile << "timestamp,Collisions,out_of_bounds,speedDiff" << std::endl;
+	int timestamp = 1;
 	for (timestampStatistics ts : stats) {
 
-		myFile << ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << std::endl;
+		myFile << timestamp<<","<<ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << std::endl;
+		timestamp = timestamp + 4;
 	}
 	myFile.close();
 	return;
@@ -449,8 +450,8 @@ void event_vehicle_out_of_bounds(NumericalID veh_id) {
 	stats.back().carsOutOfBounds = stats.back().carsOutOfBounds + 1;
 }
 
-double differenceFromDesiredSpeed(double desiredSpeed, double actualSpeed) {
-	return abs(desiredSpeed - actualSpeed);
+double differenceFromDesiredSpeed(double actualSpeed, double desiredSpeed) {
+	return desiredSpeed - actualSpeed;
 }
 
 void simulate(laneFreeGlobalState state, int depth) {

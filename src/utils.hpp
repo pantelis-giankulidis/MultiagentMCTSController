@@ -19,18 +19,18 @@
 #define MAX_DESIRED_SPEED 35
 #define ROAD_WIDTH 10.2
 #define ROAD_SAFETY_GAP 0.25 
-#define GAMMA 0.6
+#define GAMMA 0
 #define epsilon 1
 #define SUMO_CAR_LENGTH 2
 
 /*Factored value MCTS hyperparameters*/
-#define MAX_FVMCTS_DEPTH 2
-#define FVMCTS_GAMMA 0.85
+#define MAX_FVMCTS_DEPTH 3
+#define FVMCTS_GAMMA 0.45
 #define SIMULATIONS_FROM_ROOT 8
-#define DISTANCE_FOR_CREATING_EDGE 30
-#define EXPLORATION_TERM 0.0001f
-#define ALPHA 5
-#define BETA 2
+#define DISTANCE_FOR_CREATING_EDGE 20
+#define EXPLORATION_TERM 0.5f
+#define ALPHA 9
+#define BETA 6
 
 
 /*Max Plus hyperparameters */
@@ -81,10 +81,12 @@
 #define WALL_DN(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, -(safety)*v, MAXIMUM(0, y-0.5*w - (point)), -uymax_hard)
 #define WALL_UP(point, safety, v, y, w, T, uymax_hard) U_lemma33(T, +(safety)*v, MAXIMUM(0, (point) - (y+0.5*w)), -uymax_hard)
 
+
+/*UTILS OF PLAIN MCTS*/
 #define SAFETY_GAP 1
 
 
-const std::vector<double> longitudinalAccelerationValues{ -5,-2,-1,0,1,2,5 };
+const std::vector<double> longitudinalAccelerationValues{-5, -2,0,2,5 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1};
 const int availableActions = 21;
 
@@ -392,6 +394,26 @@ public:
 		return max;
 	}
 
+	void printMij() {
+		for (std::vector<float> row : mij) {
+			std::cout << "[" << std::endl;
+			for (float g : row) {
+				std::cout << g << ",";
+			}
+			std::cout << "]" << std::endl;
+		}
+	}
+
+	void printMji() {
+		for (std::vector<float> row : mji) {
+			std::cout << "[" << std::endl;
+			for (float g : row) {
+				std::cout << g << ",";
+			}
+			std::cout << "]" << std::endl;
+		}
+	}
+
 	float getMijRowSum(int indexColumn) {
 		float totalSum = 0;
 		for (int i = 0; i < availableActions; i++) {
@@ -587,6 +609,8 @@ Car applyDynamics(Car c, int indexActionX, int indexActionY);
 
 
 float imediateReward(Car c, Car c_star, std::vector<Car> adjacencyList);
+
+float exitingRoadPenalty(Car c);
 
 float betweenCarsReward(Car c, Car c1);
 

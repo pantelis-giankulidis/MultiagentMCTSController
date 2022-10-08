@@ -702,7 +702,7 @@ private:
 
         //Case when we had crush in the simulation
         if (states <= 5) {
-            score = score - 10/states;//TODO
+            score = score - 1/states;//TODO
         }
         else {
            score = score + (epsilon / (differenceFromDesiredSpeed + epsilon));//TODO check epsilon 

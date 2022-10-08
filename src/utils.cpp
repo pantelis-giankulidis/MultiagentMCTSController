@@ -56,7 +56,9 @@ float imediateReward(Car c, Car c_star, std::vector<Car> adjacencyList) {
 	float score = oldDistanceFromDesiredSpeed - newDistanceFromDesiredSpeed;
 
 	float res = (1 / (newDistanceFromDesiredSpeed+epsilon));// +score;//elegxos gia 0
-	//std::cout << "Res=" << res << std::endl;
+	if (c_star.getVelocityX() > c_star.getDesiredSpeed()) {
+		res = res - oldDistanceFromDesiredSpeed;
+	}
 	// Check if a collision in eminent
 	float collision = 0;
 
@@ -70,10 +72,23 @@ float imediateReward(Car c, Car c_star, std::vector<Car> adjacencyList) {
 	}
 	collision = collision / adjacencyList.size();
 	
+	float penalty = exitingRoadPenalty(c);
+
 	//ALPHA favours reaching the desired speed and BETA favours avoiding collisions
-	return ALPHA * res - BETA * collision;
+	float score2 = ALPHA * res - BETA * collision + penalty;
+	
+	return score2;
 }
 
+float exitingRoadPenalty(Car c) {
+	if (c.getPositionY() >= 7.2) {
+		return -10;
+	}
+	else {
+		//std::cout << c.getPositionY() << std::endl;
+		return 0;
+	}
+}
 
 /* Function that computes the reward based on the likelihood of collision betweeen two cars*/
 float betweenCarsReward(Car c, Car c1) {

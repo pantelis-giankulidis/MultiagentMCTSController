@@ -301,7 +301,7 @@ bool finalState::isTerminal(const laneFreeState& state) {
 
 	for (Car c2 : carsInTheRoad) {
 
-		minDistanceY = ((c.getWidth() / 2) + (c2.getWidth() / 2)) + SAFETY_GAP/2;
+		minDistanceY = ((c.getWidth() / 2) + (c2.getWidth() / 2)) + SAFETY_GAP;
 		minDistanceX = ((c.getLength() / 2) + (c2.getLength() / 2)) + SAFETY_GAP;
 
 		diffInX = c.getPositionX() > c2.getPositionX() ? c.getPositionX() - c2.getPositionX() : c2.getPositionX() - c.getPositionX();
@@ -354,7 +354,7 @@ void factoredValueMCTS::main(laneFreeGlobalState s) {
 	}
 
 	// Run maxplus with no exploration to get the final coordinated action
-	graphSolver.updateNodeExplorationFlag(1);
+	//graphSolver.updateNodeExplorationFlag(0);
 	graphSolver.setC(0);
 	//graphSolver.printGraph();
 	graphSolver.maxplus();
@@ -376,12 +376,19 @@ void factoredValueMCTS::updateGraphStats(laneFreeGlobalState s, MaxPlus step) {
 		//std::cout << "nod.getN()=" << nod.getN() << std::endl;
 		//std::cout << "nod.getNi()[actionIndex] = " << nod.getNi()[actionIndex] << std::endl;
 		
+		/*if (nod.getCar().getCarNumber() == 2) {
+			std::cout << "updating...." << std::endl;
+			for (int ac = 0; ac < availableActions; ac++) {
+				std::cout << "act->"<<ac<<", q="<<nod.getQ()[ac] << std:: endl;
+			}
+		}*/
 		//Update node statistics
 		nod.setN(nod.getN() + 1);
 		
 		int actionIndex = nod.getTemporaryBestActionIndex();
 		nod.setNi(actionIndex, nod.getNi()[actionIndex] + 1); // Ni=Ni+1
 		nod.setQ(actionIndex, nod.getQ()[actionIndex] + (nod.getBestActionValue(actionIndex) - nod.getQ()[actionIndex]) / nod.getNi()[actionIndex]); // Q' = Q'+(qi-Q')/Ni
+		
 
 		//Update edge statistics
 		std::vector<edge*> tmpAdjacencyList = nod.getAdjacencyList();
@@ -480,8 +487,8 @@ void factoredValueMCTS::computeFactoredImediateReward(laneFreeGlobalState s, lan
 		float reward = imediateReward(car_s, car_s_star, adjecencyList);
 
 
-		r.setActionValue(actionIndex, reward + gamma * r.getTemporaryBestActionValue());//q=r+g*SIMULATE
-
+		//r.setActionValue(actionIndex, reward + gamma * r.getTemporaryBestActionValue());//q=r+g*SIMULATE
+		r.setActionValue(actionIndex, r.getBestActionValue(actionIndex) + gamma * reward);
 		maxPlusGraph[i] = r;
 	}
 
