@@ -52,10 +52,11 @@ void simulation_initialize() {
 
 	//Log file open
 	//
-	logFile.open("log.txt");
+	logFile.open("log.csv");
 	logFile9.open("log9.txt");
 	logFile12.open("log12.txt");
 	
+	logFile << "vehicle,desspeed" << std::endl;
 	initializeScores();
 
 	//initialize srand with the same seed as sumo
@@ -177,16 +178,7 @@ void simulation_step() {
 	if (RUNNING_AS_INDEPENDENT_AGENTS == 1) {
 
 		
-		std::string car1 = "normal_flow.177";
-		std::string car2 = "normal_flow.175";
-		std::string car3 = "normal_flow.huhu";
-
-		std::string car4 = "normal_flow.409";
-		std::string car5 = "normal_flow.411";
-		std::string car6 = "normal_flow.jjj";
-
-		std::string car7 = "normal_flow.155";
-		std::string car8 = "normal_flow.158";
+		
 
 		
 
@@ -194,7 +186,7 @@ void simulation_step() {
 
 		//2.Iterate through current vehicles in the road
 		for (i = 0; i < n_myids; i++) {
-
+			logFile << get_vehicle_name(myids[i]) << "," << get_desired_speed(myids[i]) << std::endl;
 			/*
 			* Create root of the MCTS tree
 			*/
@@ -226,27 +218,7 @@ void simulation_step() {
 			/* After creating the initial state,run the MCTS algorithm and get the best action*/
 			carAction next = MCTSInstance::calculateAction(root);
 			//std::cout << "Root size after = " << sizeof(root) << std::endl;
-			if (get_vehicle_name(myids[i]) == car1 || get_vehicle_name(myids[i]) == car2 || get_vehicle_name(myids[i]) == car3) {
-				
-					logFile << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
-					logFile << ",Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "  , time=" << get_current_time_step() * get_time_step_length()<<std::endl;
-					logFile << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
-				
-			}
 			
-			if (get_vehicle_name(myids[i]) == car4 || get_vehicle_name(myids[i]) == car5 || get_vehicle_name(myids[i]) == car5) {
-
-				logFile9 << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
-				logFile9 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "   , time=" << get_current_time_step() * get_time_step_length() << std::endl;
-				logFile9 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
-
-			}
-
-			if (get_vehicle_name(myids[i]) == car7 || get_vehicle_name(myids[i]) == car8) {
-				logFile12 << "Agent " << i << " desired_speed = " << get_desired_speed(myids[i]) << ", actual_speed = " << get_speed_x(myids[i]);
-				logFile12 << "Position = " << get_position_x(myids[i]) << "," << get_position_y(myids[i]) << "   , time=" << get_current_time_step() * get_time_step_length() << std::endl;
-				logFile12 << " ACTION = " << next.getLongitudinalAccelerationValue() << ", AND " << next.getLateralAccelerationValue() << std::endl;
-			}
 
 
 			/* Apply the best action to the controlled car*/
@@ -295,9 +267,6 @@ void simulation_step() {
 			
 			//apply_acceleration(myids[i], next.getLongitudinalAccelerationValue(), next.getLateralAccelerationValue());
 		}
-
-		logFile << "-----------------------------------------" << std::endl;
-		logFile9 << "------------------------------------------" << std::endl;
 
 	}
 
@@ -387,12 +356,13 @@ void simulation_finalize() {
 	/*
 	* WRITING STATISTICS TO FILE
 	*/
-	myFile.open("stats.csv");
-	myFile << "Collisions,out_of_bounds,speedDiff" << std::endl;
-
+	myFile.open("stats11000.csv");
+	myFile << "timestamp,Collisions,out_of_bounds,speedDiff" << std::endl;
+	int timestamp = 1;
 	for (timestampStatistics ts : stats) {
 
-		myFile << ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << std::endl;
+		myFile << timestamp << ","<<ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << std::endl;
+		timestamp = timestamp + 3;
 	}
 	myFile.close();
 	return;
