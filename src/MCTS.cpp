@@ -198,14 +198,28 @@ laneFree_MonteCarloSimulation_strategy::laneFree_MonteCarloSimulation_strategy(l
 
 void laneFree_MonteCarloSimulation_strategy::generateRandom(carAction& action) {
 	double desiredSpeed = state->getControlledCar().getDesiredSpeed();
-	int x = longitudinalDistribution(state->getControlledCar().getVelocityX(), desiredSpeed).generateNext();
-	int y = lateralDistribution(state->getControlledCar().getVelocityY()).generateNext();
-	//int x = 2;
-	//int y = 2;
-	//std::cout << "Acceel" << std::endl;
-	//std::cout << "acceleration to apply " << longitudinalAccelerationValues[x] << " , " << lateralAccelerationValues[y] << std::endl;
-	action.setLateralAccelerationValue(lateralAccelerationValues[y]);
-	action.setLongitudinalAccelerationValue(longitudinalAccelerationValues[x]);
+
+	/***
+	* Case of diagonal movements
+	*/
+	//int x = longitudinalDistribution(state->getControlledCar().getVelocityX(), desiredSpeed).generateNext();
+	//int y = lateralDistribution(state->getControlledCar().getVelocityY()).generateNext();
+	//action.setLateralAccelerationValue(lateralAccelerationValues[y]);
+	//action.setLongitudinalAccelerationValue(longitudinalAccelerationValues[x]);
+
+	/*
+	* Case of cross movements
+	*/
+	int x = 0, y = 0;
+	int act = rand() % availableActions;
+	if (act < 3) {
+		x = act;
+	}
+	else {
+		y = act;
+	}
+	action.setLateralAccelerationValue(AccelerationValues[y]);
+	action.setLongitudinalAccelerationValue(AccelerationValues[x]);
 }
 
 

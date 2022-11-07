@@ -47,6 +47,34 @@ Car createCarFromSumo(int index, NumericalID* myids) {
 	return c;
 }
 
+void initializeSimulationOne() {
+	insert_new_vehicle("lane_free_car_plugin_0", "route0", "lane_free_car", 10, 8, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_1", "route0", "lane_free_car", 2.5, 8.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_2", "route0", "lane_free_car", 5, 6, 28, 0, 0);
+}
+
+void initializeSimulationTwo() {
+	insert_new_vehicle("lane_free_car_plugin_0", "route0", "lane_free_car", 30, 2.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_1", "route0", "lane_free_car", 17, 2.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_2", "route0", "lane_free_car", 20, 7, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_3", "route0", "lane_free_car", 32, 6, 28, 0, 0);
+
+}
+
+void initializeSimulationThree() {
+	insert_new_vehicle("lane_free_car_plugin_0", "route0", "lane_free_car", 20, 7.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_1", "route0", "lane_free_car", 10, 4.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_2", "route0", "lane_free_car", 20, 2.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_3", "route0", "lane_free_car", 20, 5.5, 28, 0, 0);
+}
+
+
+void initializeSimulationFour() {
+	insert_new_vehicle("lane_free_car_plugin_0", "route0", "lane_free_car", 20, 7.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_1", "route0", "lane_free_car", 15, 7.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_2", "route0", "lane_free_car", 10, 7.5, 28, 0, 0);
+	insert_new_vehicle("lane_free_car_plugin_3", "route0", "lane_free_car", 15, 5, 28, 0, 0);
+}
 
 void simulation_initialize() {
 
@@ -60,8 +88,16 @@ void simulation_initialize() {
 	initializeScores();
 
 	//initialize srand with the same seed as sumo
-	//srand(get_seed());
-	srand(time(0));
+	srand(get_seed());
+	//srand(time(0));
+
+
+	/*Insert vehicles */
+	//initializeSimulationOne();
+	//initializeSimulationTwo();
+	//initializeSimulationThree();
+	initializeSimulationFour();
+
 
 	//insert 20 vehicles
 	int n_init = 0;

@@ -86,7 +86,10 @@
 
 const std::vector<double> longitudinalAccelerationValues{ -5,-2,0,2,5 };
 const std::vector<double> lateralAccelerationValues{ 0,-1,1 };
-const int availableActions = 15;
+// For the case of cross movements
+const std::vector<double> AccelerationValues{ 0,-2,2,-1,1 };
+
+const int availableActions = 5;
 
 
 
@@ -606,5 +609,15 @@ void insertNewNodeScore(unsigned int id);
 int getNumNodeVisits(unsigned int id);
 float getAvgNodeScore(unsigned int id);
 void updateNodeScore(unsigned int id, float score);
+
+
+/*
+Init cars functions
+*/
+void initializeSimulationOne();
+void initializeSimulationTwo();
+void initializeSimulationThree();
+void initializeSimulationFour();
+
 
 #endif
