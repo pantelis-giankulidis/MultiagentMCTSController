@@ -198,12 +198,33 @@ public:
 	int carsOutOfBounds;
 	double sumOfDifferencesFromDesiredSpeed;
 
-	timestampStatistics(double timestamp, int cars, int collisions, int carsOutOfBounds, double sumOfDifferencesFromDesiredSpeed) {
+	/*Case of car exampel trajectories*/
+	double car1speedx;
+	double car1speedy;
+	double car2speedx;
+	double car2speedy;
+
+	double car3speedx;
+	double car3speedy;
+	double car4speedx;
+	double car4speedy;
+
+	timestampStatistics(double timestamp, int cars, int collisions, int carsOutOfBounds, double sumOfDifferencesFromDesiredSpeed,
+		double c1x,double c1y,double c2x,double c2y,double c3x,double c3y,double c4x,double c4y) {
 		this->timestamp = timestamp;
 		this->cars = cars;
 		this->collisions = collisions;
 		this->carsOutOfBounds = carsOutOfBounds;
 		this->sumOfDifferencesFromDesiredSpeed = sumOfDifferencesFromDesiredSpeed;
+
+		this->car1speedx = c1x;
+		this->car1speedy = c1y;
+		this->car2speedx = c2x;
+		this->car2speedy = c2y;
+		this->car3speedx = c3x;
+		this->car3speedy = c3y;
+		this->car4speedx = c4x;
+		this->car4speedy = c4y;
 	}
 
 	double getAverageDifferenceFromDesiredSpeed() {

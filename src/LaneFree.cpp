@@ -145,7 +145,9 @@ void simulation_step() {
 
 	// Allocate memory for statistics in this timestamp
 	if (stats.begin() == stats.end() || stats.back().timestamp != get_current_time_step()) {
-		timestampStatistics st = timestampStatistics(get_current_time_step(), n_myids, 0, 0, 0);
+		timestampStatistics st = timestampStatistics(get_current_time_step(), n_myids, 0, 0, 0,
+			get_speed_x(myids[0]),get_speed_y(myids[0]), get_speed_x(myids[1]), get_speed_y(myids[1]),
+			get_speed_x(myids[2]), get_speed_y(myids[2]), get_speed_x(myids[3]), get_speed_y(myids[3]));
 		stats.push_back(st);
 	}
 
@@ -320,10 +322,8 @@ void simulation_step() {
 		totalDifferenceFromDesiredSpeed = totalDifferenceFromDesiredSpeed + differenceFromDesiredSpeed(get_speed_x(myids[j]), get_desired_speed(myids[j]));
 	}
 	stats.back().sumOfDifferencesFromDesiredSpeed = totalDifferenceFromDesiredSpeed;
-	 
-	//std::cout << "SPEED ->> " << stats.back().sumOfDifferencesFromDesiredSpeed << " CARS --> " << stats.back().cars;
-	//std::cout << "DIFFERENCE --> " << stats.back().getAverageDifferenceFromDesiredSpeed() << std::endl;
 
+	/*Case of car examples*/
 
 	NumericalID* detector_ids = get_detectors_ids();
 	int* detector_values = get_detectors_values();
@@ -393,11 +393,12 @@ void simulation_finalize() {
 	* WRITING STATISTICS TO FILE
 	*/
 	myFile.open("stats11000.csv");
-	myFile << "timestamp,Collisions,out_of_bounds,speedDiff" << std::endl;
+	myFile << "timestamp,Collisions,out_of_bounds,speedDiff,car1x,car1y,car2x,car2y,car3x,car3y,car4x,car4y" << std::endl;
 	int timestamp = 1;
 	for (timestampStatistics ts : stats) {
 
-		myFile << timestamp << ","<<ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << std::endl;
+		myFile << timestamp << ","<<ts.collisions << "," << ts.carsOutOfBounds << "," << ts.getAverageDifferenceFromDesiredSpeed() << ","
+		 << ts.car1speedx << "," << ts.car1speedy << "," << ts.car2speedx << "," << ts.car2speedy << "," << ts.car3speedx << "," << ts.car3speedy << "," << ts.car4speedx << "," << ts.car2speedy << std::endl;
 		timestamp = timestamp + 3;
 	}
 	myFile.close();
