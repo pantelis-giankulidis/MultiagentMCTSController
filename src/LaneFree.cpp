@@ -95,8 +95,8 @@ void simulation_initialize() {
 	/*Insert vehicles */
 	//initializeSimulationOne();
 	//initializeSimulationTwo();
-	//initializeSimulationThree();
-	initializeSimulationFour();
+	initializeSimulationThree();
+	//initializeSimulationFour();
 
 
 	//insert 20 vehicles
@@ -392,7 +392,7 @@ void simulation_finalize() {
 	/*
 	* WRITING STATISTICS TO FILE
 	*/
-	myFile.open("stats11000.csv");
+	myFile.open("stats7000.csv");
 	myFile << "timestamp,Collisions,out_of_bounds,speedDiff,car1x,car1y,car2x,car2y,car3x,car3y,car4x,car4y" << std::endl;
 	int timestamp = 1;
 	for (timestampStatistics ts : stats) {
